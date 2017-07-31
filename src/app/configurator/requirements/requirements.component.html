@@ -1,0 +1,12 @@
+<main>
+  <header>&nbsp;Requirements&nbsp;</header>
+  <ol>
+    <li *ngFor="let requirement of requirements$ | async">
+      <p>
+        <em>Footprint: {{requirement.L}}mm</em>
+        <em>Lordosis: {{requirement.lordosis}}&#176;</em> 
+        Quantity: {{requirement.qty}}
+      </p>
+    </li>
+  </ol>
+</main>

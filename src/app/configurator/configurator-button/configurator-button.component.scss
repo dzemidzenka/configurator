@@ -1,0 +1,13 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    margin-left: 0.5rem;
+  }
+}

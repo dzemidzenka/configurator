@@ -1,0 +1,73 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: fit-content;
+}
+
+.wrapper--configurator {
+  --cell-bg-color: #DCFEFC;
+  width: 99%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start; // box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
+  padding-top: 10px;
+  .configurator {
+    display: flex;
+    box-sizing: border-box;
+    width: fit-content;
+    box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
+    background-color: #B6E5FB;
+    .vertical {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      transform: rotate(-90deg) translateX(50px);
+      width: 50px; // z-index: -1;
+    }
+    main {
+      .lordosis {
+        text-align: center;
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        background-color: #B6E5FB;
+      }
+      .line {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+      }
+      .cell--header {
+        background-color: var(--cell-bg-color);
+        line-height: 2rem;
+      }
+      .cell--item {
+        height: 100px;
+        background-color: lightyellow;
+        font-family: FontAwesome;
+      }
+      .cell--item--fixed {
+        background-color: var(--cell-bg-color);
+      }
+    }
+  }
+}
+
+app-requirements,
+app-set-proposal {
+  height: 100%;
+  box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
+  background-color: lightyellow; // overflow: auto;
+}

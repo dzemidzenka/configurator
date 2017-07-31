@@ -1,0 +1,40 @@
+<app-material-selection></app-material-selection>
+
+<div class="wrapper">
+  <div class="wrapper--configurator">
+    <div class="configurator">
+      <header class="vertical">
+        footprint
+      </header>
+
+      <main>
+        <header class="lordosis">
+          Lordosis
+        </header>
+
+        <header class="line">
+          <div class="cell">
+            <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
+          </div>
+          <div *ngFor="let lordosis of dataLordosis$ | async">
+            <div class="cell cell--header">
+              {{lordosis.lordosis}}&#176; Movers
+            </div>
+          </div>
+        </header>
+
+        <section *ngFor="let L of dataL$ | async">
+          <div class="line">
+            <div class="cell cell--item cell--item--fixed">{{L.L}}mm</div>
+            <div *ngFor="let lordosis of dataLordosis$ | async">
+              <app-configurator-button class="cell cell--item" [qtyAvail]="getQtyAvail(L.material, L.L, lordosis.lordosis) | async" (qtyChanged)="qtyChanged($event, L.L, lordosis.lordosis)">
+              </app-configurator-button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <app-requirements></app-requirements>
+    <app-set-proposal></app-set-proposal>
+  </div>
+</div>
