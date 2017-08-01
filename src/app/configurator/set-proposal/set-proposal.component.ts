@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 // import { SetProposalModel } from '../../data/set-proposal.model';
-import { RequirementsModel } from '../../data/requirements.model';
+import { RequirementsModel } from '../../models/requirements.model';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 

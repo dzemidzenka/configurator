@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { ConfiguratorDataModel } from '../data/data.model';
+import { ConfiguratorDataModel } from '../models/data.model';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-data',
-  templateUrl: './data.component.html',
-  styleUrls: ['./data.component.scss']
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
 })
-export class DataComponent implements OnInit {
+export class TableComponent implements OnInit {
 
   data$: Observable<Array<ConfiguratorDataModel>>;
 

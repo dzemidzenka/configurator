@@ -22,7 +22,7 @@ export class MaterialSelectionComponent implements OnInit {
     }, 0)
   }
   filterMaterials(query) {
-    this.results = this.resultsAll.filter(e => e.toLowerCase().indexOf(query.toLowerCase()) === 0);
+    this.results = this.resultsAll.filter(e => e.toLowerCase().includes(query.toLowerCase()));
     this.dataService.setCurrentMaterial(this.results[0]);
   }
   onSelect(material: string) {
@@ -45,15 +45,6 @@ export class MaterialSelectionComponent implements OnInit {
         return _a;
       })
       .do(a => this.resultsAll = a);
-
-    // .map(a => {
-    //   let _a = [];
-    //   _a = _.sortBy(a, 'material');
-    //   _a = _.sortedUniqBy(_a, 'material');
-    //   return _a;
-    // })
-    // .do(o => this.results = o)
-    // .do(o => console.log(o));      
   }
 
   select(material) {

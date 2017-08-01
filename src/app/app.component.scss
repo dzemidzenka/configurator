@@ -2,97 +2,37 @@
 .app {
   width: 100vw;
   height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: "menu" "content";
-  @include atMedium {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 110px auto 1fr 20px;
-    grid-template-areas: "header header" "menu menu" "left content" "footer footer";
-  }
-  @include atLarge {
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: 110px auto 1fr 20px;
-    grid-template-areas: "header header header" "menu menu menu" "left content right" "footer footer footer";
-  }
-  header {
-    grid-area: header;
+  display: flex;
+  flex-direction: column;
+  header {    
     background-color: #1f89ce;
     color: black;
-    display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     text-transform: uppercase;
+    display: flex;
+    font-size: 3.5rem;
+    height: 10%;
     display: none;
-    @include atMedium {
+    @include atDesktop {
       display: flex;
-      font-size: 1.5rem;
-    }
-    @include atLarge {
-      font-size: 2.5rem;
-    }
-    @include atXLarge {
-      font-size: 3.5rem;
     }
   }
   nav {
-    grid-area: menu;
+    display: none;
+    @include atDesktop {
+      display: initial;
+    }
   }
-  // aside:first-of-type {
-  //   grid-area: left;
-  //   overflow: auto;
-  //   display: none;
-  //   @include atMedium {
-  //     display: initial;
-  //     min-width: 250px;
-  //   }
-  // }
   main {
-    grid-area: content;
     overflow: auto;
   }
-  // aside:last-of-type {
-  //   grid-area: right;
-  //   overflow: auto;
-  //   display: none;
-  //   @include atMedium {
-  //     display: initial;
-  //     min-width: 250px;
-  //   }    
-  //   @include atLarge {
-  //     display: initial;
-  //     min-width: 250px;
-  //   }
-  // }
-  // footer {
-  //   grid-area: footer;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   text-transform: uppercase;
-  //   display: none;
-  //   background-color: #662265;
-  //   @include atMedium {
-  //     display: flex;
-  //     font-size: 1.5rem;
-  //   }
-  //   @include atLarge {
-  //     font-size: 2.5rem;
-  //   }
-  //   @include atXLarge {
-  //     font-size: 3.5rem;
-  //   }
-  // }
 }
- 
-
-
 
 .insetshadow {
   color: #202020;
   background-color: #2d2d2d;
   letter-spacing: .1em;
-  text-shadow: -1px -1px 10px #9AD2F8, 2px 2px 1px #363636;  
+  text-shadow: -1px -1px 10px #9AD2F8, 2px 2px 1px #363636;
 }

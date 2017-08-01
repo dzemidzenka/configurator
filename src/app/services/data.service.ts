@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ConfiguratorDataModel } from '../data/data.model';
-import { RequirementsModel } from '../data/requirements.model';
-import { data } from '../data/data';
+import { ConfiguratorDataModel } from '../models/data.model';
+import { RequirementsModel } from '../models/requirements.model';
+import { data } from '../app.data';
 import { Observable, Subject } from 'rxjs';
 
-
+ 
 @Injectable()
 export class DataService {
 

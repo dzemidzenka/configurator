@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { ConfiguratorDataModel } from '../data/data.model';
-import { RequirementsModel } from '../data/requirements.model';
+import { ConfiguratorDataModel } from '../models/data.model';
+import { RequirementsModel } from '../models/requirements.model';
 import { Observable, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 
@@ -62,13 +62,15 @@ export class ConfiguratorComponent implements OnInit, OnDestroy {
     return this.dataService.getConfiguratorData()
       .filter(e => e.material === material && e.L === L && e.lordosis === lordosis)
       .reduce((sum, e) => sum + e.qtyInSet, 0);
-      // .do(v => console.log(v));
   }
 
 
   qtyChanged(qty, L, lordosis) {
-    _.remove(this.qtyChanges, e => e.L === L && e.lordosis === lordosis);
-    this.qtyChanges.push({ L: L, lordosis: lordosis, qty: qty });
-    this.dataService.updateRequirements(this.qtyChanges);
+    _.remove(this.qtyChanges, e => e.L === L && e.lordosis === lordosis || e.qty === 0);
+    if (qty !== 0) {
+      this.qtyChanges.push({ L: L, lordosis: lordosis, qty: qty });
+      this.dataService.updateRequirements(this.qtyChanges);
+    }
   }
+
 }

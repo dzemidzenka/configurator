@@ -1,12 +1,14 @@
-<div *ngFor="let material of materials$ | async">
-  <!-- <button pButton type="button" label="{{material}}" icon="fa-shopping-cart" (click)="select(material)"></button> -->
+<div class="wrapper-mobile">
+  <div *ngFor="let material of materials$ | async">
+     <!-- <button pButton type="button" label="{{material}}" icon="fa-shopping-cart" (click)="select(material)"></button>  -->
+     <a (click)="select(material)">{{material}}</a>
+  </div>
 </div>
-
 
 <div class="wrapper">
-  <p-autoComplete placeholder="&#xf002; Enter an implant name" [delay]='5' [dropdown]="true" [(ngModel)]="selectedMaterial" [suggestions]="results"
-    [autoHighlight]="true" [minLength]="1" [size]="30" (completeMethod)="filterMaterials($event.query)" (onDropdownClick)="handleDropdownClick($event)"
-    (onSelect)="onSelect($event)" emptyMessage="nothing found">
+  <p-autoComplete styleClass="autocomplete" placeholder="&#xf002; Enter an implant name" [delay]='5' [dropdown]="true" [(ngModel)]="selectedMaterial"
+    [suggestions]="results" [autoHighlight]="true" [minLength]="1" [size]="30" (completeMethod)="filterMaterials($event.query)"
+    (onDropdownClick)="handleDropdownClick($event)" (onSelect)="onSelect($event)" emptyMessage="nothing found">
   </p-autoComplete>
 </div>
- <!-- <hr>  -->
+<!-- <hr>  -->

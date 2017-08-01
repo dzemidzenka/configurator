@@ -1,6 +1,8 @@
+@import "../../../styles.shared.scss";
 main {
   width: fit-content;
-  min-height: 100%;
+  height: 100%;
+  background-color: lightyellow;
   header {
     font-size: 2rem;
     text-transform: uppercase;
@@ -20,6 +22,17 @@ main {
       em {
         display: block;
       }
+    }
+  }
+}
+
+@include atMobile {
+  main {
+    width: 100%;
+    margin-top: 20px;
+    background-color: initial;
+    header {
+      background-color: lightgrey;
     }
   }
 }

@@ -1,40 +1,56 @@
-// div {
-//   display: inline-flex;
-//   flex-wrap: wrap;
-//   align-items: center;
-//   margin-bottom: 2rem;
-//   button {
-//     margin-top: 2px;
-//     color: black;
-//   }
-// }
-.wrapper {
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: center;
+@import "../../../styles.shared.scss";
+@include atMobile {
+  .wrapper-mobile {
+    margin-top: 10px;
+    margin-bottom: 10px; 
+    display: inline-flex;
+    a {
+      background-color: #444;
+      color: #fff;
+      border-radius: 5px;
+      box-sizing: border-box;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-size: 150%;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+  }
+  .wrapper {
+    display: none;
+  }
 }
 
-p-autoComplete /deep/ .ui-autocomplete-dropdown {
-  // background-color: grey;
-  height: 2.6rem;
-  width: 3rem;
-  border: none;
-}
-p-autoComplete /deep/ .ui-autocomplete-input {
-  font-family: 'FontAwesome';
-  line-height: 2rem;
-  padding-left: 1rem;
-  background-color: lightyellow;
-  &:focus {
-    border: 1px solid red;
-    box-shadow: 0px 0px 10px 2px rgba(240, 193, 75, 1);
-    transform: scale(1.01, 1.01);
+@include atDesktop {
+  .wrapper-mobile {
+    display: none;
+  }
+  .wrapper {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  p-autoComplete /deep/ .ui-autocomplete-dropdown {
+    // background-color: grey;
+    height: 2.6rem;
+    width: 3rem;
+    border: none;
+  }
+  p-autoComplete /deep/ .ui-autocomplete-input {
+    font-family: 'FontAwesome';
+    line-height: 2rem;
+    padding-left: 1rem;
     background-color: lightyellow;
-  }
-  &::placeholder {
-    color: red;
+    &:focus {
+      border: 1px solid red;
+      box-shadow: 0px 0px 10px 2px rgba(240, 193, 75, 1);
+      transform: scale(1.01, 1.01);
+      background-color: lightyellow;
+    }
+    &::placeholder {
+      color: red;
+    }
   }
 }
-
-// ui-inputtext ui-widget ui-state-default ui-corner-all ui-autocomplete-input 
-// ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only

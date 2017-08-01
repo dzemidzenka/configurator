@@ -1,9 +1,22 @@
+@import "../../../styles.shared.scss";
 main {
   width: fit-content;
+  height: 100%;  
+  background-color: lightyellow;
   header {
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
     background-color: #B6E5FB;
+  }
+}
+
+@include atMobile {
+  main {
+    width: 100%;
+    background-color: initial;
+    header {
+      background-color: lightgrey;
+    }
   }
 }
