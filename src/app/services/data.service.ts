@@ -29,7 +29,7 @@ export class DataService {
 
   setCurrentMaterial(material: string) {
     if (this.currentMaterial !== material) {
-      this.currentMaterial = material;
+      this.currentMaterial = material.toUpperCase();
       this.materialSelectedSubject$.next(material);
       this.reset();
     }

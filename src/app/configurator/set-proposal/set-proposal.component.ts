@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DataService } from '../../services/data.service';
 // import { SetProposalModel } from '../../data/set-proposal.model';
 import { RequirementsModel } from '../../models/requirements.model';
@@ -8,7 +8,8 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-set-proposal',
   templateUrl: './set-proposal.component.html',
-  styleUrls: ['./set-proposal.component.scss']
+  styleUrls: ['./set-proposal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush  
 })
 export class SetProposalComponent implements OnInit {
 

@@ -1,9 +1,11 @@
-@import "../../../styles.shared.scss";
-@include atMobile {
+  @import "../../../styles.shared.scss";
   .wrapper-mobile {
-    margin-top: 10px;
-    margin-bottom: 10px; 
     display: inline-flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    @include atDesktop {
+      display: none;
+    }
     a {
       background-color: #444;
       color: #fff;
@@ -18,39 +20,33 @@
       margin-right: 2px;
     }
   }
-  .wrapper {
-    display: none;
-  }
-}
 
-@include atDesktop {
-  .wrapper-mobile {
+  .wrapper-desktop {
     display: none;
-  }
-  .wrapper {
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: center;
-  }
-  p-autoComplete /deep/ .ui-autocomplete-dropdown {
-    // background-color: grey;
-    height: 2.6rem;
-    width: 3rem;
-    border: none;
-  }
-  p-autoComplete /deep/ .ui-autocomplete-input {
-    font-family: 'FontAwesome';
-    line-height: 2rem;
-    padding-left: 1rem;
-    background-color: lightyellow;
-    &:focus {
-      border: 1px solid red;
-      box-shadow: 0px 0px 10px 2px rgba(240, 193, 75, 1);
-      transform: scale(1.01, 1.01);
+    @include atDesktop {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    p-autoComplete /deep/ .ui-autocomplete-dropdown {
+      // background-color: grey;
+      height: 2.6rem;
+      width: 3rem;
+      border: none;
+    }
+    p-autoComplete /deep/ .ui-autocomplete-input {
+      font-family: 'FontAwesome';
+      line-height: 2rem;
+      padding-left: 1rem;
       background-color: lightyellow;
-    }
-    &::placeholder {
-      color: red;
+      &:focus {
+        border: 1px solid red;
+        box-shadow: 0px 0px 10px 2px rgba(240, 193, 75, 1);
+        transform: scale(1.01, 1.01);
+        background-color: lightyellow;
+      }
+      &::placeholder {
+        color: red;
+      }
     }
   }
-}

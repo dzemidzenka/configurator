@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div class="wrapper">
+<div class="wrapper-desktop">
   <p-autoComplete styleClass="autocomplete" placeholder="&#xf002; Enter an implant name" [delay]='5' [dropdown]="true" [(ngModel)]="selectedMaterial"
     [suggestions]="results" [autoHighlight]="true" [minLength]="1" [size]="30" (completeMethod)="filterMaterials($event.query)"
     (onDropdownClick)="handleDropdownClick($event)" (onSelect)="onSelect($event)" emptyMessage="nothing found">

@@ -4,19 +4,18 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  header {    
-    background-color: #1f89ce;
-    color: black;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    display: flex;
-    font-size: 3.5rem;
-    height: 10%;
+  header {
     display: none;
     @include atDesktop {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10%;
+      background-color: #1f89ce;
+      color: black;
+      font-size: 3.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
     }
   }
   nav {

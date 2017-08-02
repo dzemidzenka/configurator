@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-configurator',
   templateUrl: './configurator.component.html',
-  styleUrls: ['./configurator.component.scss']
+  styleUrls: ['./configurator.component.scss'],
 })
 export class ConfiguratorComponent implements OnInit, OnDestroy {
 
@@ -67,10 +67,9 @@ export class ConfiguratorComponent implements OnInit, OnDestroy {
 
   qtyChanged(qty, L, lordosis) {
     _.remove(this.qtyChanges, e => e.L === L && e.lordosis === lordosis || e.qty === 0);
-    if (qty !== 0) {
-      this.qtyChanges.push({ L: L, lordosis: lordosis, qty: qty });
-      this.dataService.updateRequirements(this.qtyChanges);
-    }
+    this.qtyChanges.push({ L: L, lordosis: lordosis, qty: qty });
+    this.dataService.updateRequirements(this.qtyChanges);
+    _.remove(this.qtyChanges, e => e.qty === 0);
   }
 
 }

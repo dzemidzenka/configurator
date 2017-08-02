@@ -1,13 +1,21 @@
 @import "../../../styles.shared.scss";
 main {
-  width: fit-content;
-  height: 100%;
-  background-color: lightyellow;
+  width: 100%;
+  margin-top: 20px;
+  @include atDesktop {
+    width: fit-content;
+    margin-top: 0;
+    height: 100%;
+    background-color: lightyellow;
+  }
   header {
+    background-color: lightgrey;
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: #B6E5FB;
+    @include atDesktop {
+      background-color: #B6E5FB;
+    }
   }
   ol {
     font-style: italic;
@@ -22,17 +30,6 @@ main {
       em {
         display: block;
       }
-    }
-  }
-}
-
-@include atMobile {
-  main {
-    width: 100%;
-    margin-top: 20px;
-    background-color: initial;
-    header {
-      background-color: lightgrey;
     }
   }
 }

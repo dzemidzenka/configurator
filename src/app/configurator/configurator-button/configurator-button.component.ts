@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-configurator-button',
   templateUrl: './configurator-button.component.html',
-  styleUrls: ['./configurator-button.component.scss']
+  styleUrls: ['./configurator-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfiguratorButtonComponent implements OnInit, OnDestroy {
 
