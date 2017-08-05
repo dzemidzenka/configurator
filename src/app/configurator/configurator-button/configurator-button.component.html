@@ -4,6 +4,14 @@
     <i class="fa fa-minus-circle fa-2x" aria-hidden="true" (click)="down()"></i>
   </div>
   <h1>
-    {{qty}}/{{qtyAvail}}
+    {{qty$ | async}}/{{qtyAvail}}
+
+
+    <!-- <div *ngIf="qty$ | async; else zero; let qty">
+      <span>{{qty}}/</span><span (click)="max(qtyAvail - qty)">{{qtyAvail}}</span>
+    </div>
+    <ng-template #zero>
+      <span>0/</span><span (click)="max(qtyAvail)">{{qtyAvail}}</span>
+    </ng-template>  -->
   </h1>
 </main>

@@ -1,7 +1,7 @@
 <p-dataTable #dt [value]="data$ | async" [rows]="10" [paginator]="true" [pageLinks]="3" exportFilename="data" [rowHover]="true"
   [responsive]="true">
    <p-header>
-    <button pButton type="button" label="CSV" icon="fa-file-o" (click)="dt.exportCSV()"></button>
+    <button pButton type="button" label="Download to Excel" icon="fa-file-o" (click)="dt.exportCSV()"></button>
   </p-header> 
   <p-column field="setType" header="setType" [sortable]="true" [filter]="true"></p-column>
   <p-column field="type" header="type" [sortable]="true"></p-column>

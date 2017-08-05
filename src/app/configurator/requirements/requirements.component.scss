@@ -1,11 +1,10 @@
 @import "../../../styles.shared.scss";
 main {
   width: 100%;
-  margin-top: 20px;
   @include atDesktop {
     width: fit-content;
-    margin-top: 0;
     height: 100%;
+    overflow-y: auto;
     background-color: lightyellow;
   }
   header {
@@ -13,7 +12,12 @@ main {
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
+    position: sticky;
+    top: 50px;
+    z-index: 1;
     @include atDesktop {
+      position: initial;
+      top: initial;
       background-color: #B6E5FB;
     }
   }
@@ -22,13 +26,20 @@ main {
     font-size: 1rem;
     color: black;
     li p {
+      width: fit-content;
       padding-left: 8px;
       font-style: normal;
       font-size: 1rem;
       color: black;
-      border-left: 1px solid black;
+      border-left: 2px solid black;
       em {
         display: block;
+      }
+      @include atDesktop {
+        &:hover {
+          transform: scale(1.1);
+          font-weight: bolder;
+        }
       }
     }
   }

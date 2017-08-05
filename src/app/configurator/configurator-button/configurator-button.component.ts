@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { DataService } from '../../services/data.service';
-import { Subscription } from 'rxjs';
+import { RequirementsModel } from '../../models/requirements.model';
+
 
 @Component({
   selector: 'app-configurator-button',
@@ -8,42 +11,43 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./configurator-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConfiguratorButtonComponent implements OnInit, OnDestroy {
+export class ConfiguratorButtonComponent implements OnInit {
 
-  qty: number = 0;
-  reset$Subscription: Subscription;
   @Input() qtyAvail: number = 0;
-  @Output() qtyChanged = new EventEmitter<number>();
+  @Input() L: number = 0;
+  @Input() lordosis: number = 0;
+
+  // @Output() qtyChanged = new EventEmitter<RequirementsModel>();
+
+
+
+  qty$: Observable<number> = this.dataService.main$
+    .startWith([{ L: this.L, lordosis: this.lordosis, qty: 0, qtyAvail: this.qtyAvail }])
+    .scan((qty: number, requirements: Array<RequirementsModel>) => {
+      return requirements
+        .filter(requirement => requirement.L === this.L && requirement.lordosis === this.lordosis)
+        .reduce((qty: number, requirement: RequirementsModel) => requirement.qty, 0);
+    }, 0);
 
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit() {
-    this.reset$Subscription = this.dataService.reset$.subscribe(
-      () => {
-        this.qty = 0;
-        this.qtyChanged.emit(this.qty);
-      }
-    );
-  }
 
-  ngOnDestroy() {
-    this.reset$Subscription.unsubscribe();
-  }
+  ngOnInit() { }
+
 
   up() {
-    if (this.qty === this.qtyAvail) {
-      return;
-    }
-    this.qty++;
-    this.qtyChanged.emit(this.qty);
+    this.dataService.updateRequirements({ L: this.L, lordosis: this.lordosis, qty: 1, qtyAvail: this.qtyAvail });
+    // this.qtyChanged.emit({ L: this.L, lordosis: this.lordosis, qty: 1, qtyAvail: this.qtyAvail });
   }
+
 
   down() {
-    if (this.qty !== 0) {
-      this.qty--;
-      this.qtyChanged.emit(this.qty);
-    }
+    this.dataService.updateRequirements({ L: this.L, lordosis: this.lordosis, qty: -1, qtyAvail: this.qtyAvail });
+    // this.qtyChanged.emit({ L: this.L, lordosis: this.lordosis, qty: -1, qtyAvail: this.qtyAvail });
   }
 
+  // max(qty: number) {
+  //   this.dataService.updateRequirements({ L: this.L, lordosis: this.lordosis, qty: qty });
+  // }
 }

@@ -6,11 +6,11 @@
   flex-direction: column;
   header {
     display: none;
-    @include atDesktop {
+    @include atDesktop { 
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 10%;
+      height: 100px;
       background-color: #1f89ce;
       color: black;
       font-size: 3.5rem;

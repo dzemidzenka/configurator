@@ -11,7 +11,12 @@ main {
     text-transform: uppercase;
     font-weight: bold;
     background-color: lightgrey;
+    position: sticky;
+    top: 50px;
+    z-index: 1;
     @include atDesktop {
+      position: initial;
+      top: initial;
       background-color: #B6E5FB;
     }
   }

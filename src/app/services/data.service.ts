@@ -1,38 +1,58 @@
 import { Injectable } from '@angular/core';
-import { ConfiguratorDataModel } from '../models/data.model';
-import { RequirementsModel } from '../models/requirements.model';
-import { data } from '../app.data';
 import { Observable, Subject } from 'rxjs';
+import * as _ from 'lodash';
 
- 
+import { ConfiguratorDataModel } from '../models/data.model';
+import { RequirementsModel, ACTION } from '../models/requirements.model';
+import { data } from '../app.data';
+
+
 @Injectable()
 export class DataService {
 
-  private data$: Observable<ConfiguratorDataModel>;
-  currentMaterial: string;
-
-  private setProposalSubject$ = new Subject();
-  private setProposal$ = this.setProposalSubject$.asObservable();
-
+  private currentMaterial: string;
+  private data$: Observable<ConfiguratorDataModel> = Observable.from(data).share();
+  private requirementsSubject$ = new Subject();
   private resetSubject$ = new Subject();
-  reset$ = this.resetSubject$.asObservable();
-
-  private materialSelectedSubject$ = new Subject();
-  materialSelected$ = this.materialSelectedSubject$.asObservable();
 
 
-  constructor() { 
-    this.data$ = Observable.from(data).share();
-    this.currentMaterial = 'PEEK';       //need to get the 1st material
-  }
+  main$: Observable<Array<RequirementsModel>> = this.requirementsSubject$
+    .merge(this.resetSubject$)
+    .scan((requirements: Array<RequirementsModel>, newRequirement: RequirementsModel) => {
+      if (newRequirement.op === ACTION.RESET) {
+        return [];
+      }
+
+      let index = requirements.findIndex(o => o.L === newRequirement.L && o.lordosis === newRequirement.lordosis);
+      let _array = [];
+      if (index === -1) {
+        _array = requirements.concat(newRequirement);
+      } else {
+        _array = requirements;
+        let newQty = _array[index].qty + newRequirement.qty;
+        if (newQty <= _array[index].qtyAvail) {
+          _array[index].qty = newQty;
+        } 
+      }
+      return _.sortBy(_array.filter(requirement => requirement.qty > 0), 'lordosis');
+    }, [])
+    .share() as Observable<Array<RequirementsModel>>;
+
+
+
+  constructor() { }
 
 
   setCurrentMaterial(material: string) {
     if (this.currentMaterial !== material) {
       this.currentMaterial = material.toUpperCase();
-      this.materialSelectedSubject$.next(material);
       this.reset();
     }
+  }
+
+
+  reset() {
+    this.resetSubject$.next({ op: ACTION.RESET });
   }
 
 
@@ -44,17 +64,7 @@ export class DataService {
   }
 
 
-  updateRequirements(changes: Array<RequirementsModel>) {
-    this.setProposalSubject$.next(changes);
+  updateRequirements(requirement: RequirementsModel) {
+    this.requirementsSubject$.next(requirement);
   }
-
-
-  getRequirements(): Observable<Array<RequirementsModel>> {
-    return this.setProposal$ as Observable<Array<RequirementsModel>>;
-  }
-
-  reset() {
-    this.resetSubject$.next();
-  }
-
 }

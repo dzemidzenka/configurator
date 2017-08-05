@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { DataService } from '../../services/data.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -12,26 +14,11 @@ export class MaterialSelectionComponent implements OnInit {
 
   materials$: Observable<Array<string>>;
   results: Array<string>;
-  private resultsAll: Array<string>;
-  selectedMaterial: string;
-
-
-  handleDropdownClick(e) {
-    setTimeout(() => {
-      this.results = new Array(...this.resultsAll);
-    }, 0)
-  }
-  filterMaterials(query) {
-    this.results = this.resultsAll.filter(e => e.toLowerCase().includes(query.toLowerCase()));
-    this.dataService.setCurrentMaterial(this.results[0]);
-  }
-  onSelect(material: string) {
-    this.dataService.setCurrentMaterial(material);
-  }
-
+  private resultsAll: Array<string>;     //for auto complete widget
 
   constructor(
     private dataService: DataService,
+    private router: Router
   ) { }
 
 
@@ -47,7 +34,23 @@ export class MaterialSelectionComponent implements OnInit {
       .do(a => this.resultsAll = a);
   }
 
-  select(material) {
-    this.dataService.setCurrentMaterial(material);
+
+
+  handleDropdownClick(e) {   
+    setTimeout(() => {
+      this.results = new Array(...this.resultsAll);
+    }, 0)
+  }
+
+
+  filterMaterials(query) {
+    this.results = this.resultsAll.filter(e => e.toLowerCase().includes(query.toLowerCase()));
+    this.dataService.setCurrentMaterial(this.results[0]);
+  }
+
+
+  onSelect(material: string) {
+    // this.router.navigate(['/configurator/'], { queryParams: { 'material': material } });
+    this.router.navigate(['/configurator', material]);
   }
 }

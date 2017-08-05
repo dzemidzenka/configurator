@@ -16,15 +16,15 @@ import { RequirementsComponent } from './configurator/requirements/requirements.
 import { TableModule } from './table/table.module';
 
 import { DataService } from './services/data.service';
-import { RouteResolverService } from './services/route-resolver.service';
+// import { RouteResolverService } from './services/route-resolver.service';
 
 
 
 const ROUTES: Routes = [
-  { path: '', redirectTo: '/configurator', pathMatch: 'full' },
-  { path: 'configurator', component: ConfiguratorComponent, resolve: {data: RouteResolverService} },
+  { path: '', redirectTo: '/configurator/', pathMatch: 'full' },
+  { path: 'configurator/:material', component: ConfiguratorComponent },
   { path: 'data', loadChildren: './table/table.module#TableModule' },
-  { path: '**', redirectTo: '/configurator' }
+  { path: '**', redirectTo: '/configurator/' }
 ];
 
 
@@ -48,7 +48,7 @@ const ROUTES: Routes = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     DataService,
-        RouteResolverService
+    // RouteResolverService
   ],
   bootstrap: [
     AppComponent]
