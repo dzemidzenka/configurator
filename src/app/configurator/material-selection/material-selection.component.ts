@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { DataService } from '../../services/data.service';
-import { Observable } from 'rxjs';
-import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-material-selection',
@@ -12,7 +12,9 @@ import * as _ from 'lodash';
 })
 export class MaterialSelectionComponent implements OnInit {
 
-  materials$: Observable<Array<string>>;
+  materials$: Observable<Array<string>> = this.dataService.state$
+    .map(state => state.materials)
+    .do(materials => this.resultsAll = materials);
   results: Array<string>;
   private resultsAll: Array<string>;     //for auto complete widget
 
@@ -22,21 +24,11 @@ export class MaterialSelectionComponent implements OnInit {
   ) { }
 
 
-  ngOnInit() {
-    this.materials$ = this.dataService.getConfiguratorData()
-      .map(o => o.material)
-      .toArray()
-      .map(a => {
-        let _a = a.sort();
-        _a = _.sortedUniq(_a);
-        return _a;
-      })
-      .do(a => this.resultsAll = a);
-  }
+  ngOnInit() { }
 
 
 
-  handleDropdownClick(e) {   
+  handleDropdownClick(e) {
     setTimeout(() => {
       this.results = new Array(...this.resultsAll);
     }, 0)

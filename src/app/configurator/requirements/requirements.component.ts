@@ -9,6 +9,8 @@ import { DataService } from '../../services/data.service';
 })
 export class RequirementsComponent implements OnInit {
 
+  requirements$ = this.dataService.state$.map(state => state.requirements);
+
   constructor(public dataService: DataService) { }
 
   ngOnInit() { }

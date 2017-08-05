@@ -1,7 +1,7 @@
  <main>
   <header>&nbsp;Requirements&nbsp;</header>
   <ol>
-    <li *ngFor="let requirement of dataService.main$ | async">
+    <li *ngFor="let requirement of requirements$ | async">
       <!-- <p class="animated zoomIn"> -->
       <p>
         <em>Footprint: {{requirement.L}}mm</em>

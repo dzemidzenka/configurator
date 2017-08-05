@@ -21,17 +21,17 @@ export class ConfiguratorButtonComponent implements OnInit {
 
 
 
-  qty$: Observable<number> = this.dataService.main$
+  qty$: Observable<number> = this.dataService.state$
+    .map(state => state.requirements)
     .startWith([{ L: this.L, lordosis: this.lordosis, qty: 0, qtyAvail: this.qtyAvail }])
     .scan((qty: number, requirements: Array<RequirementsModel>) => {
-      return requirements
-        .filter(requirement => requirement.L === this.L && requirement.lordosis === this.lordosis)
-        .reduce((qty: number, requirement: RequirementsModel) => requirement.qty, 0);
+        return requirements
+          .filter(requirement => requirement.L === this.L && requirement.lordosis === this.lordosis)
+          .reduce((qty: number, requirement: RequirementsModel) => requirement.qty, 0);
     }, 0);
 
 
   constructor(private dataService: DataService) { }
-
 
   ngOnInit() { }
 

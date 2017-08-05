@@ -1,5 +1,108 @@
 <app-material-selection></app-material-selection>
 
+<!-- <div *ngFor="let L of L$ | async">
+            <div>
+              {{L}} Movers
+            </div>
+          </div>
+
+          <div *ngFor="let Lordosis of Lordosis$ | async">
+            <div>
+              {{Lordosis}} Movers
+            </div>
+          </div> -->
+
+<div class="wrapper-desktop">
+  <div class="wrapper--configurator">
+    <div class="configurator">
+      <header class="vertical">
+        footprint
+      </header>
+
+      <main>
+        <header class="lordosis">
+          Lordosis
+        </header>
+
+        <header class="line">
+          <div class="cell">
+            <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
+          </div>
+          <div *ngFor="let lordosis of Lordosis$ | async">
+            <div class="cell cell--header">
+              {{lordosis}}&#176; Movers
+            </div>
+          </div>
+        </header>
+
+        <section *ngFor="let L of L$ | async">
+          <div class="line">
+            <div class="cell cell--item cell--item--fixed">{{L}}mm</div>
+
+            <div *ngFor="let lordosis of Lordosis$ | async">
+              <app-configurator-button class="cell cell--item" [qtyAvail]="getQtyAvail(currentMaterial$ | async, L, lordosis) | async"
+                [L]="L" [lordosis]="lordosis">
+              </app-configurator-button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <app-requirements></app-requirements>
+    <app-set-proposal></app-set-proposal>
+  </div>
+</div>
+
+
+
+
+<div class="wrapper-mobile">
+  <header>&nbsp;Implant&nbsp;&nbsp;Selection&nbsp;
+    <div *ngIf="requirements$ | async; let requirements">
+      <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
+    </div>
+  </header>
+
+  <div *ngFor="let L of L$ | async">
+    <div *ngFor="let lordosis of Lordosis$ | async">
+      <div *ngIf="(getQtyAvail(currentMaterial$ | async, L, lordosis) | async) > 0">
+        <section>
+          <p class="grid-cell">{{L}}mm</p>
+          <p class="grid-cell">{{lordosis}}&#176;</p>
+          <app-configurator-button class="cell cell--item" [qtyAvail]="getQtyAvail(currentMaterial$ | async, L, lordosis) | async"
+            [L]="L" [lordosis]="lordosis">
+          </app-configurator-button>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <app-requirements></app-requirements>
+  <app-set-proposal></app-set-proposal>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-material-selection></app-material-selection>
+
 
 
 <div class="wrapper-desktop">
@@ -68,4 +171,4 @@
 
   <app-requirements></app-requirements>
   <app-set-proposal></app-set-proposal>
-</div> 
+</div>  -->
