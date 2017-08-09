@@ -6,12 +6,14 @@
     padding-top: 10px;
     box-sizing: border-box;
     background-color: $theme-mobile-header-color;
-    z-index: 1;
-    @include atDesktop {
-      display: none;
-    }
+    display: flex;
+    justify-content: center;
+          margin-bottom: 100px;
+
+    // @include atDesktop {
+    //   display: none;
+    // }
     span {
-      margin-bottom: 10px;
       a {
         background-color: $theme-mobile-button-color;
         color: $theme-mobile-button-font-color;

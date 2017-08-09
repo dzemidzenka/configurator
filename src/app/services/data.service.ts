@@ -173,3 +173,12 @@ export class DataService {
     
 //   }
 // }
+
+
+
+
+// <a routerLink="/path">
+// <a [routerLink]="[ '/path', routeParam ]">
+// <a [routerLink]="[ '/path', { matrixParam: 'value' } ]">
+// <a [routerLink]="[ '/path' ]" [queryParams]="{ page: 1 }">
+// <a [routerLink]="[ '/path' ]" fragment="anchor"> 
