@@ -5,7 +5,7 @@
     width: 100vw;
     padding-top: 10px;
     box-sizing: border-box;
-    background-color: darkgrey;
+    background-color: $theme-mobile-header-color;
     z-index: 1;
     @include atDesktop {
       display: none;
@@ -13,8 +13,8 @@
     span {
       margin-bottom: 10px;
       a {
-        background-color: #444;
-        color: #fff;
+        background-color: $theme-mobile-button-color;
+        color: $theme-mobile-button-font-color;
         border-radius: 5px;
         padding-left: 10px;
         padding-right: 10px;
@@ -26,9 +26,9 @@
         margin-right: 2px;
         text-decoration: none;
         &.routeActive {
-          color: red;
+          color: $theme-mobile-button-active-font-color;
           text-decoration: overline;
-          text-decoration-color: red;
+          text-decoration-color: $theme-mobile-button-active-font-color;
         }
       }
     }
@@ -41,22 +41,21 @@
       justify-content: center;
       margin-top: 0.5rem;
     }
-    p-autoComplete /deep/ .ui-autocomplete-dropdown {
+    p-autoComplete::ng-deep .ui-autocomplete-dropdown {
       // background-color: grey;
       height: 2.6rem;
       width: 3rem;
       border: none;
     }
-    p-autoComplete /deep/ .ui-autocomplete-input {
+    p-autoComplete::ng-deep .ui-autocomplete-input {
       font-family: 'FontAwesome';
       line-height: 2rem;
       padding-left: 1rem;
-      background-color: lightyellow;
+      background-color: $theme-desktop-color;
       &:focus {
         border: 1px solid red;
         box-shadow: 0px 0px 10px 2px rgba(240, 193, 75, 1);
         transform: scale(1.01, 1.01);
-        background-color: lightyellow;
       }
       &::placeholder {
         color: red;

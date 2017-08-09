@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { DataService } from '../../services/data.service';
-import { RequirementsModel } from '../../models/requirements.model';
+import { RequirementsModel } from '../../models/models';
 
 
 @Component({
@@ -21,9 +20,9 @@ export class ConfiguratorButtonComponent implements OnInit {
 
 
 
-  qty$: Observable<number> = this.dataService.state$
+  qty$ = this.dataService.state$
     .map(state => state.requirements)
-    .startWith([{ L: this.L, lordosis: this.lordosis, qty: 0, qtyAvail: this.qtyAvail }])
+    // .startWith([{ L: this.L, lordosis: this.lordosis, qty: 0, qtyAvail: this.qtyAvail }])
     .scan((qty: number, requirements: Array<RequirementsModel>) => {
         return requirements
           .filter(requirement => requirement.L === this.L && requirement.lordosis === this.lordosis)

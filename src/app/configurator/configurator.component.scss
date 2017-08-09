@@ -11,7 +11,7 @@
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: lightgrey;
+    background-color: $theme-mobile-subheader-color;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,7 +41,7 @@
     margin-bottom: 10px;
   }
   .wrapper--configurator {
-    --cell-bg-color: #DCFEFC;
+    --cell-bg-color: $theme-desktop-subheader-color;
     width: 99%;
     display: flex;
     flex-wrap: wrap;
@@ -55,16 +55,20 @@
       max-width: 1200px;
       overflow: auto;
       box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
-      background-color: #B6E5FB;
+      background-color: $theme-desktop-header-color;
       .vertical {
-        font-size: 1.5rem;
+        font-size: 2rem;
         text-transform: uppercase;
         font-weight: bold;
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
-        transform: rotate(-90deg) translateX(50px);
+        // justify-content: flex-end;        
+        // transform: rotate(-90deg) translateX(50px);
+        // transform: rotate(180deg);  
+        text-orientation: upright;      
+        writing-mode: vertical-rl;
         width: 50px; 
       }
       main {
@@ -73,7 +77,7 @@
           font-size: 2rem;
           text-transform: uppercase;
           font-weight: bold;
-          background-color: #B6E5FB;
+          background-color: $theme-desktop-header-color;
         }
         .line {
           display: inline-flex;
@@ -85,6 +89,7 @@
           justify-content: center;
           align-items: center;
           width: 100px;
+          z-index: 1;
         }
         .cell--header {
           background-color: var(--cell-bg-color);
@@ -92,7 +97,7 @@
         }
         .cell--item {
           height: 100px;
-          background-color: lightyellow;
+          background-color: $theme-desktop-color;
           font-family: FontAwesome;
         }
         .cell--item--fixed {

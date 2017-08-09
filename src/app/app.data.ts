@@ -1,4 +1,4 @@
-import { ConfiguratorDataModel } from './models/data.model';
+import { ConfiguratorDataModel } from './models/models';
 
 export const data: Array<ConfiguratorDataModel> = [
     {

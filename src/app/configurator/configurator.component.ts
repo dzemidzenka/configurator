@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import * as _ from 'lodash';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { DataService } from '../services/data.service';
 
@@ -14,41 +14,47 @@ import { DataService } from '../services/data.service';
 })
 export class ConfiguratorComponent implements OnInit {
 
-  Lordosis$ = this.dataService.state$.map(state => state.lordosis);
-  L$ = this.dataService.state$.map(state => state.L);
-  currentMaterial$ = this.dataService.state$.map(state => state.currentMaterial);
-  requirements$ = this.dataService.state$.map(state => state.requirements.length > 0 ? true : false);
-  private params$Subscription: Subscription;
+  // Lordosis$ = this._dataService.state$.map(state => state.lordosis);
+  // L$ = this._dataService.state$.map(state => state.L);
+  // currentMaterial$ = this._dataService.state$.map(state => state.currentMaterial);
+  
+  Lordosis$ = this._dataService.state$.pluck('lordosis');
+  L$ = this._dataService.state$.pluck('L');
+  currentMaterial$ = this._dataService.state$.pluck('currentMaterial');
+  
+  requirements$ = this._dataService.state$.map(state => state.requirements.length > 0 ? true : false);
+  private _params$Subscription: Subscription;
 
   constructor(
-    private dataService: DataService,
-    private router: Router,
-    private route: ActivatedRoute) { }
+    private _dataService: DataService,
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) { }
 
 
   ngOnInit() {
-    this.params$Subscription = this.route.params.subscribe(param => {
+    this._params$Subscription = this._route.params.subscribe(param => {
       if (param.material) {
-        this.dataService.setCurrentMaterial(param.material);
+        this._dataService.setCurrentMaterial(param.material);
       } else {
-        this.router.navigate(['/configurator', 'PEEK']);
+        this._router.navigate(['/configurator', 'PEEK']);
       }
     });
   }
 
 
   ngOnDestroy() {
-    this.params$Subscription.unsubscribe();
+    this._params$Subscription.unsubscribe();
   }
 
 
   doReset() {
-    this.dataService.reset();
+    this._dataService.reset();
   }
 
 
   getQtyAvail(material, L, lordosis): Observable<number> {
-    return this.dataService.state$
+    return this._dataService.state$
       .map(state => state.raw
         .filter(e => e.material === material && e.L === L && e.lordosis === lordosis)
         .reduce((sum, e) => sum + e.qtyInSet, 0));

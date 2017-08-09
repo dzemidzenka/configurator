@@ -5,10 +5,10 @@ main {
     width: fit-content;
     height: 100%;
     overflow-y: auto;
-    background-color: lightyellow;
+    background-color: $theme-desktop-color;
   }
   header {
-    background-color: lightgrey;
+    background-color: $theme-mobile-subheader-color;
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
@@ -18,7 +18,7 @@ main {
     @include atDesktop {
       position: initial;
       top: initial;
-      background-color: #B6E5FB;
+      background-color: $theme-desktop-header-color;
     }
   }
   ol {

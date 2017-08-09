@@ -4,20 +4,20 @@ main {
   @include atDesktop {
     width: fit-content;
     height: 100%;
-    background-color: lightyellow;
+    background-color: $theme-desktop-color;
   }
   header {
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: lightgrey;
+    background-color: $theme-mobile-subheader-color;
     position: sticky;
     top: 50px;
     z-index: 1;
     @include atDesktop {
       position: initial;
       top: initial;
-      background-color: #B6E5FB;
+      background-color: $theme-desktop-header-color;
     }
   }
 }

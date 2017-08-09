@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { DataService } from '../../services/data.service';
 
@@ -12,7 +11,7 @@ import { DataService } from '../../services/data.service';
 })
 export class MaterialSelectionComponent implements OnInit {
 
-  materials$: Observable<Array<string>> = this.dataService.state$
+  materials$ = this.dataService.state$
     .map(state => state.materials)
     .do(materials => this.resultsAll = materials);
   results: Array<string>;
