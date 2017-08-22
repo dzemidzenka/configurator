@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { DataService } from '../../services/data.service';
 
@@ -7,41 +6,19 @@ import { DataService } from '../../services/data.service';
 @Component({
   selector: 'app-material-selection',
   templateUrl: './material-selection.component.html',
-  styleUrls: ['./material-selection.component.scss']
+  styleUrls: ['./material-selection.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MaterialSelectionComponent implements OnInit {
+export class MaterialSelectionComponent {
 
-  materials$ = this.dataService.state$
-    .map(state => state.materials)
-    .do(materials => this.resultsAll = materials);
-  results: Array<string>;
-  private resultsAll: Array<string>;     //for auto complete widget
+  materials$ = this.dataService.state$.map(state => state.materials);
 
   constructor(
     private dataService: DataService,
-    private router: Router
   ) { }
 
 
-  ngOnInit() { }
-
-
-
-  handleDropdownClick(e) {
-    setTimeout(() => {
-      this.results = new Array(...this.resultsAll);
-    }, 0)
-  }
-
-
-  filterMaterials(query) {
-    this.results = this.resultsAll.filter(e => e.toLowerCase().includes(query.toLowerCase()));
-    this.dataService.setCurrentMaterial(this.results[0]);
-  }
-
-
   onSelect(material: string) {
-    // this.router.navigate(['/configurator/'], { queryParams: { 'material': material } });
-    this.router.navigate(['/configurator', material]);
+    this.dataService.setCurrentMaterial(material);
   }
 }

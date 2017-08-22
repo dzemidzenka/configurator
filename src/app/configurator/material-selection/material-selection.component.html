@@ -1,16 +1,6 @@
-<div class="wrapper-mobile">
-  <span *ngFor="let material of materials$ | async">
-     <a [routerLink]="['/configurator', material]" routerLinkActive="routeActive">{{material}}</a>   
-  </span>
-</div>
-
-<!-- <div class="wrapper-desktop">
-  <p-autoComplete styleClass="autocomplete" placeholder="&#xf002; Enter an implant name" [delay]='5' [dropdown]="true" [suggestions]="results"
-    [autoHighlight]="true" [minLength]="1" [size]="30" (completeMethod)="filterMaterials($event.query)" (onDropdownClick)="handleDropdownClick($event)"
-    (onSelect)="onSelect($event)" emptyMessage="nothing found">
-  </p-autoComplete>
-</div> -->
-<!-- <hr>  -->
+  <ng-container *ngFor="let material of materials$ | async">
+     <a [routerLink]="['/configurator', material]" routerLinkActive="routeActive" (click)="onSelect(material)">{{material}}</a>   
+  </ng-container>
 
 
 

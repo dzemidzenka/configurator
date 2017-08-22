@@ -1,4 +1,3 @@
-import { data } from './app.data';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
@@ -6,18 +5,24 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   readonly title: string = 'Implant Configurator';
 
   constructor(
     private titleService: Title,
-
   ) { }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
-  }
+  }  
 }
+
+
+
+    // const box = x => ({
+    //   map: f => box(f(x)),
+    //   inspect: () => console.log(x)
+    // })
+    // const result = box(3).map(x => x + 3).map( x=> x*2).inspect();

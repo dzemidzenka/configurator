@@ -1,44 +1,66 @@
-export enum ACTION { 'RAW', 'RESET', 'REQUIREMENT', 'MATERIAL' };
+export enum ACTION { RAW = 'RAW', RESET = 'RESET', REQUIREMENT = 'REQUIREMENT', MATERIAL = 'MATERIAL' };
 
-export interface ActionModel {
+export interface IActionModel {
     op: ACTION;
-    raw?: Array<ConfiguratorDataModel>;
+    raw?: Array<IConfiguratorDataModel>;
     currentMaterial?: string;
-    requirement?: RequirementsModel;
+    requirement?: IRequirementsModel;
 }
 
-export interface StateModel {
-    actions: Array<ActionModel>;
-    raw: Array<ConfiguratorDataModel>;
+export interface IAvailModel{
+    material: string;
+    L: number; 
+    lordosis: number;
+    partNumber: string;
+    description: string;      
+}
+
+
+export interface IStateModel {
+    actions: Array<IActionModel>;
+    raw: Array<IConfiguratorDataModel>;
     materials: Array<string>;
     L: Array<Number>;
     lordosis: Array<Number>;
     currentMaterial: string;
-    requirements: Array<RequirementsModel>;
+    avail: Array<IAvailModel>;
+    requirements: Array<IRequirementsModel>;
+    setProposal: Array<ISetProposalModel>;    
 }
 
-export interface ConfiguratorDataModel {
+export interface IConfiguratorDataModel {
     setType: string;
     type: string;
     partNumber: string;
     description: string;
     material: string;
-    available: number;
     H: number;
     L: number;
     W: number;
     lordosis: number;
+    lordosisOrig?: number;    
     qtyInSet: number;
 }
 
-export interface RequirementsModel {
+export interface IRequirementMessageModel {
     L: number;
     lordosis: number;
     qty: number;
-    qtyAvail?: number;
 }
 
-export interface SetProposalModel {
+export interface IRequirementsModel extends IRequirementMessageModel {
+    material: string;  
+    partNumber: string;
+    description: string;  
+    avail: boolean;
+    availMaterials: Array<string>;    
+    animationActive: boolean;
+    excluded: boolean;
+}
+
+export interface ISetProposalModel {
     setType: string;
     qty: number;
+    qtyInSet: number;
+    animationActive: boolean;    
 } 

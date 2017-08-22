@@ -1,38 +1,37 @@
 @import "../styles.shared.scss";
 .app {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  header {
-    display: none;
-    @include atDesktop { 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100px;
-      min-height: 100px;      
-      background-color: #1f89ce;
-      color: black;
-      font-size: 3.5rem;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-  }
-  nav {
-    display: none;
+    width: 100vw;
     @include atDesktop {
-      display: initial;
+        height: 100vh;
+        background-color: $theme-app-background-color;        
     }
-  }
-  main {
-    overflow: auto;
-  }
 }
 
-.insetshadow {
-  color: #202020;
-  background-color: #2d2d2d;
-  letter-spacing: .1em;
-  text-shadow: -1px -1px 10px #9AD2F8, 2px 2px 1px #363636;
+header {
+    display: none;
+    @include atDesktop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        min-height: 100px;
+        background: radial-gradient(circle at center, #b1e1ff 0%, #66a0fc 100%);
+        font-size: 3.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+
+nav {
+    display: none;
+    @include atDesktop {
+        display: initial;
+    }
+}
+
+main {
+    @include atDesktop {
+        overflow: auto;
+        height: calc(100% - 145px);
+    }
 }

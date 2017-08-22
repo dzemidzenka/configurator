@@ -1,12 +1,29 @@
- <main>
-  <header>&nbsp;Requirements&nbsp;</header>
-  <ol>
+<header>
+    Requirements
+</header>
+
+<ol>
     <li *ngFor="let requirement of requirements$ | async">
-      <!-- <p class="animated zoomIn"> -->
-      <p>
-        <em>Footprint: {{requirement.L}}mm</em>
-        <em>Lordosis: {{requirement.lordosis}}&#176;</em> Quantity: {{requirement.qty}}
-      </p>
+        <!-- <p class="animated zoomIn"> -->
+        <!-- <article [@signal]="requirement.animationActive"> -->
+        <article [ngClass]="{animation: requirement.animationActive}">
+
+            <!-- <div><em>{{requirement.L}}mm/{{requirement.lordosis}}&#176;</em></div> -->
+            <div><strong>Footprint: {{requirement.L}}mm</strong></div>
+
+            <ng-container *ngIf="requirement.lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
+            <ng-template #moverTemplate>
+                <div><strong>Lordosis: {{requirement.lordosis}}&#176;</strong></div>
+            </ng-template>
+            <ng-template #outlierTemplate>
+                <div><strong>Outliers</strong></div>
+            </ng-template>
+
+
+            <!-- <div>Part Number: {{requirement.partNumber}}</div>
+            <div>Description: {{requirement.description}}</div> -->
+            <div>Qty: {{requirement.qty}}</div>
+            <div *ngIf="!requirement.avail" [ngClass]="{'availNo': !requirement.avail}">Material: {{requirement.material}}</div>
+        </article>
     </li>
-  </ol>
-</main> 
+</ol>

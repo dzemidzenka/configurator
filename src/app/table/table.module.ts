@@ -9,20 +9,20 @@ import { TableComponent } from './table.component';
 
 
 const ROUTES: Routes = [
-  { path: 'data', component: TableComponent },
+  { path: '', component: TableComponent }
 ];
 
 
 @NgModule({
   imports: [
-    RouterModule.forChild(ROUTES),    
     CommonModule,
+    RouterModule.forChild(ROUTES),
     DataTableModule,
     SharedModule,
     ButtonModule
   ],
   declarations: [
     TableComponent
-  ]
+  ] 
 })
 export class TableModule { }

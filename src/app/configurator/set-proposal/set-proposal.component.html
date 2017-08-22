@@ -1,6 +1,15 @@
-<main>
-  <header>&nbsp;Set&nbsp;&nbsp;Proposal&nbsp;</header>
-  <!-- <ul *ngFor="let set of setProposal$ | async">
-    <li>{{set.setType}}, {{set.qty}}</li>
-  </ul> -->
-</main>
+<header>
+    Set&nbsp;&nbsp;Proposal
+</header>
+
+<ol>
+    <li *ngFor="let set of setProposal$ | async">
+        <article [ngClass]="{animation: set.animationActive}">
+            <div><strong>SetType: {{set.setType}}</strong></div>
+            <div>NumberOfSets: {{set.qty}}</div>
+            <div>QtyInSet: {{set.qtyInSet}}</div>
+        </article>
+    </li>
+</ol>
+<!-- <p id="copy" style="display: initial;"></p>
+<button (click)="copy()">Copy</button> -->

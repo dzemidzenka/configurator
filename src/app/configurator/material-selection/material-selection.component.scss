@@ -1,66 +1,53 @@
   @import "../../../styles.shared.scss";
-  .wrapper-mobile {
+   :host {
     position: fixed;
     height: 50px;
-    width: 100vw;
-    padding-top: 10px;
+    width: 100%;
     box-sizing: border-box;
     background-color: $theme-mobile-header-color;
     display: flex;
     justify-content: center;
-          margin-bottom: 100px;
-
-    // @include atDesktop {
-    //   display: none;
-    // }
-    span {
-      a {
-        background-color: $theme-mobile-button-color;
-        color: $theme-mobile-button-font-color;
-        border-radius: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        box-sizing: border-box;
-        font-size: 150%;
-        margin-left: 2px;
-        margin-right: 2px;
-        text-decoration: none;
-        &.routeActive {
-          color: $theme-mobile-button-active-font-color;
-          text-decoration: overline;
-          text-decoration-color: $theme-mobile-button-active-font-color;
-        }
-      }
+    align-items: center;
+    z-index: 1;
+    @include atDesktop {
+      position: initial;
+      background-color: initial;
+      height: 60px;
     }
   }
 
-  .wrapper-desktop {
-    display: none;
+  a {
+    background-color: $theme-mobile-button-color;
+    color: $theme-mobile-button-font-color;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    font-size: 150%;
+    margin-left: 2px;
+    margin-right: 2px;
+    text-decoration: none;
+    &.routeActive {
+      color: $theme-mobile-button-active-font-color;
+      text-decoration: overline;
+      text-decoration-color: $theme-mobile-button-active-font-color;
+    }
     @include atDesktop {
-      display: flex;
-      justify-content: center;
-      margin-top: 0.5rem;
-    }
-    p-autoComplete::ng-deep .ui-autocomplete-dropdown {
-      // background-color: grey;
-      height: 2.6rem;
-      width: 3rem;
-      border: none;
-    }
-    p-autoComplete::ng-deep .ui-autocomplete-input {
-      font-family: 'FontAwesome';
-      line-height: 2rem;
-      padding-left: 1rem;
-      background-color: $theme-desktop-color;
-      &:focus {
-        border: 1px solid red;
-        box-shadow: 0px 0px 10px 2px rgba(240, 193, 75, 1);
-        transform: scale(1.01, 1.01);
-      }
-      &::placeholder {
+      border-radius: 5px;
+      background-color: #622567;
+      color: white;
+      box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.5);
+      &:hover {
         color: red;
+        border-color: red;
+        box-shadow: 0px 0px 20px 0px red;
+      }
+      &.routeActive {
+        color: red;
+        border: 1px solid red;
+        box-shadow: 0px 0px 20px 0px red;
       }
     }
   }

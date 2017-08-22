@@ -1,17 +1,12 @@
-<main *ngIf="qtyAvail > 0">
-  <div class="wrapper">
-    <i class="fa fa-plus-circle fa-2x" aria-hidden="true" (click)="up()"></i>
-    <i class="fa fa-minus-circle fa-2x" aria-hidden="true" (click)="down()"></i>
-  </div>
-  <h1>
-    {{qty$ | async}}/{{qtyAvail}}
+<!-- <div class="wrapper">
+  <i class="fa fa-plus-circle fa-2x" aria-hidden="true" (click)="up()" [ngClass]="{'availYes': context.avail, 'availNo': !context.avail}"></i>
+  <i class="fa fa-minus-circle fa-2x" aria-hidden="true" (click)="down()" [ngClass]="{'availYes': context.avail, 'availNo': !context.avail}"></i>
+</div>
+<h1>{{context.qty}}</h1> -->
 
 
-    <!-- <div *ngIf="qty$ | async; else zero; let qty">
-      <span>{{qty}}/</span><span (click)="max(qtyAvail - qty)">{{qtyAvail}}</span>
-    </div>
-    <ng-template #zero>
-      <span>0/</span><span (click)="max(qtyAvail)">{{qtyAvail}}</span>
-    </ng-template>  -->
-  </h1>
-</main>
+<div class="wrapper" *ngIf="!context.excluded">
+    <i class="fa fa-minus" (click)="down()"></i>
+    <span [ngClass]="{'availYes': context.avail, 'availNo': !context.avail}">{{context.qty}}</span>
+    <i class="fa fa-plus" (click)="up()"></i>
+</div>

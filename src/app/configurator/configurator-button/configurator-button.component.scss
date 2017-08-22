@@ -1,13 +1,59 @@
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-  h1 {
-    margin-left: 0.5rem;
-  }
+// :host {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   .wrapper {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//   }
+//   h1 {
+//     margin-left: 0.3rem;
+//   }
+// }
+// 
+// .availYes {
+//   color: black;
+// }
+// .availNo {
+//   color: red;
+//   opacity: 0.4;
+// }
+@import "../../../styles.shared.scss";
+:host {
+    border: 1px solid black;
+    border-radius: 5px;
+    @include atDesktop {
+        border: none;
+        border-radius: 0;        
+    }
+}
+
+.wrapper {
+    @include atDesktop {
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+    * {
+        width: 30px;
+        height: 30px;
+        float: left;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    span {
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        color: white;
+    }
+}
+
+.availYes {
+    background-color: #622567;
+}
+
+.availNo {
+    background-color: red;
 }

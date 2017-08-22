@@ -1,72 +1,81 @@
 <app-material-selection></app-material-selection>
 
 <div class="wrapper-desktop">
-  <div class="wrapper--configurator">
-    <div class="configurator">
-      <header class="vertical">
-        footprint
-      </header>
+    <div class="wrapper--configurator">
+        <div class="configurator">
+            <header class="vertical">
+                footprint
+            </header>
 
-      <main>
-        <header class="lordosis">
-          Lordosis
-        </header>
+            <main>
+                <header class="lordosis">
+                    Lordosis
+                </header>
 
-        <header class="line">
-          <div class="cell">
-            <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
-          </div>
-          <div *ngFor="let lordosis of Lordosis$ | async">
-            <div class="cell cell--header">
-              {{lordosis}}&#176; Movers
-            </div>
-          </div>
-        </header>
+                <header class="line">
+                    <div class="cell">
+                        <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
+                    </div>
+                    <div *ngFor="let lordosis of Lordosis$ | async">
+                        <ng-container *ngIf="lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
+                        <ng-template #moverTemplate>
+                            <div class="cell cell--header">{{lordosis}}&#176; Movers</div>
+                        </ng-template>
 
-        <section *ngFor="let L of L$ | async">
-          <div class="line">
-            <div class="cell cell--item cell--item--fixed">{{L}}mm</div>
+                        <ng-template #outlierTemplate>
+                            <div class="cell cell--header">Outliers</div>
+                        </ng-template>
+                    </div>
+                </header>
 
-            <div *ngFor="let lordosis of Lordosis$ | async">
-              <app-configurator-button class="cell cell--item" [qtyAvail]="getQtyAvail(currentMaterial$ | async, L, lordosis) | async"
-                [L]="L" [lordosis]="lordosis">
-              </app-configurator-button>
-            </div>
-          </div>
-        </section>
-      </main>
+                <section *ngFor="let L of L$ | async">
+                    <div class="line">
+                        <div class="cell cell--item cell--item--fixed">{{L}}mm</div>
+                        <ng-container *ngFor="let lordosis of Lordosis$ | async">
+                            <app-configurator-button class="cell cell--item" [context]="getContext(L, lordosis) | async">
+                            </app-configurator-button>
+                        </ng-container>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
+
     <app-requirements></app-requirements>
     <app-set-proposal></app-set-proposal>
-  </div>
 </div>
 
 
 
 
 <div class="wrapper-mobile">
-  <header>&nbsp;Implant&nbsp;&nbsp;Selection&nbsp;
-    <div *ngIf="requirements$ | async; let requirements">
+    <header>
+        <span>&nbsp;Implant&nbsp;&nbsp;Selection&nbsp;</span>
+        <span *ngIf="requirementsChosen$ | async; let requirementsChosen">
       <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
-    </div>
-  </header>
+    </span>
+    </header>
 
-  <div *ngFor="let L of L$ | async">
-    <div *ngFor="let lordosis of Lordosis$ | async">
-       <div *ngIf="(getQtyAvail(currentMaterial$ | async, L, lordosis) | async) > 0"> 
-        <section>
-          <p class="grid-cell">{{L}}mm</p>
-          <p class="grid-cell">{{lordosis}}&#176;</p>
-          <app-configurator-button class="cell cell--item" [qtyAvail]="getQtyAvail(currentMaterial$ | async, L, lordosis) | async"
-            [L]="L" [lordosis]="lordosis">
-          </app-configurator-button>
-        </section>
-       </div> 
-    </div>
-  </div>
+    <ng-container *ngFor="let L of L$ | async">
+        <ng-container *ngFor="let lordosis of Lordosis$ | async">
+            <section>
+                <p class="grid-cell">{{L}}mm</p>
+                <!-- <p class="grid-cell">{{lordosis}}&#176;</p> -->
 
-  <app-requirements></app-requirements>
-  <app-set-proposal></app-set-proposal>
+                <ng-container *ngIf="lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
+                <ng-template #moverTemplate>
+                    <div class="grid-cell">{{lordosis}}&#176; Movers</div>
+                </ng-template>
+                <ng-template #outlierTemplate>
+                    <div class="grid-cell">Outliers</div>
+                </ng-template>   
+
+                <app-configurator-button [context]="getContext(L, lordosis) | async">
+                </app-configurator-button>
+            </section>
+        </ng-container>
+    </ng-container>
+
+    <app-requirements></app-requirements>
+    <app-set-proposal></app-set-proposal>
 </div>
-
-

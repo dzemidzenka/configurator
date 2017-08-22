@@ -1,17 +1,16 @@
-<p-dataTable #dt [value]="data$ | async" [rows]="10" [paginator]="true" [pageLinks]="3" exportFilename="data" [rowHover]="true"
+ <p-dataTable #dt [value]="data$ | async" [rows]="10" [paginator]="true" [pageLinks]="3" exportFilename="data" [rowHover]="true"
   [responsive]="true">
    <p-header>
     <button pButton type="button" label="Download to Excel" icon="fa-file-o" (click)="dt.exportCSV()"></button>
   </p-header> 
   <p-column field="setType" header="setType" [sortable]="true" [filter]="true"></p-column>
-  <p-column field="type" header="type" [sortable]="true"></p-column>
-  <p-column field="partNumber" header="partNumber" [sortable]="true"></p-column>
-  <p-column field="description" header="description" [sortable]="true"></p-column>
+  <p-column field="type" header="type" [sortable]="true" [filter]="true"></p-column>
+  <p-column field="partNumber" header="partNumber" [sortable]="true" [filter]="true"></p-column>
+  <p-column field="description" header="description" [sortable]="true" [filter]="true"></p-column>
   <p-column field="material" header="material" [sortable]="true" [filter]="true"></p-column>
-  <p-column field="available" header="available" [sortable]="true"></p-column>
-  <p-column field="H" header="H" [sortable]="true"></p-column>
+  <p-column field="H" header="H" [sortable]="true" [filter]="true"></p-column>
   <p-column field="L" header="L" [sortable]="true" [filter]="true"></p-column>
-  <p-column field="W" header="W" [sortable]="true"></p-column>
-  <p-column field="lordosis" header="lordosis" [sortable]="true" [filter]="true"></p-column>
-  <p-column field="qtyInSet" header="qtyInSet" [sortable]="true"></p-column>
-</p-dataTable>
+  <p-column field="W" header="W" [sortable]="true" [filter]="true"></p-column>
+  <p-column field="lordosisOrig" header="lordosis" [sortable]="true" [filter]="true"></p-column>
+  <p-column field="qtyInSet" header="qtyInSet" [sortable]="true" [filter]="true"></p-column>
+</p-dataTable> 

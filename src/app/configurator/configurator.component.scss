@@ -1,5 +1,4 @@
 @import "../../styles.shared.scss";
-
 //  mobile version
 .wrapper-mobile {
   @include atDesktop {
@@ -7,107 +6,102 @@
   }
   header {
     position: sticky;
-    top: 50px;
-    font-size: 2rem;
+    top: 50px; // font-size: 2rem;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
     text-transform: uppercase;
     font-weight: bold;
     background-color: $theme-mobile-subheader-color;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 3rem;
     z-index: 1;
-    i {
-      margin-right: 2rem;
-    }
   }
   section {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 5px;
+    // margin-bottom: 5px;
     .grid-cell {
       color: black;
-      border-radius: 5px;
       font-size: 150%;
     }
   }
 }
+
 // desktop version
 .wrapper-desktop {
   display: none;
   @include atDesktop {
     display: flex;
-    margin-bottom: 10px;
+    justify-content: center;
+    height: 90%;
   }
   .wrapper--configurator {
     --cell-bg-color: $theme-desktop-subheader-color;
-    width: 99%;
+    box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
+    height: fit-content; // overflow: auto;
+  }
+  .configurator {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: stretch;
-    padding-top: 10px;
-    .configurator {
+    box-sizing: border-box;
+    width: fit-content;
+    background-color: $theme-desktop-header-color;
+    .vertical {
+      font-size: 2rem;
+      text-transform: uppercase;
+      font-weight: bold;
       display: flex;
-      box-sizing: border-box;
-      width: fit-content;
-      max-width: 1200px;
-      overflow: auto;
-      box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
-      background-color: $theme-desktop-header-color;
-      .vertical {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-orientation: upright;
+      writing-mode: vertical-rl;
+      width: 50px;
+    }
+    main {
+      .lordosis {
+        text-align: center;
         font-size: 2rem;
         text-transform: uppercase;
         font-weight: bold;
-        display: flex;
-        flex-direction: row;
+        background-color: $theme-desktop-header-color;
+      }
+      .line {
+        display: inline-flex;
         justify-content: center;
         align-items: center;
-        // justify-content: flex-end;        
-        // transform: rotate(-90deg) translateX(50px);
-        // transform: rotate(180deg);  
-        text-orientation: upright;      
-        writing-mode: vertical-rl;
-        width: 50px; 
       }
-      main {
-        .lordosis {
-          text-align: center;
-          font-size: 2rem;
-          text-transform: uppercase;
-          font-weight: bold;
-          background-color: $theme-desktop-header-color;
-        }
-        .line {
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .cell {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100px;
-          z-index: 1;
-        }
-        .cell--header {
-          background-color: var(--cell-bg-color);
-          line-height: 2rem;
-        }
-        .cell--item {
-          height: 100px;
-          background-color: $theme-desktop-color;
-          font-family: FontAwesome;
-        }
-        .cell--item--fixed {
-          background-color: var(--cell-bg-color);
-        }
+      .line:not(:nth-child(2n)){
+        border-bottom: 1px solid lightgrey;        
+      }
+      .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 6vw;
+        min-width: 100px;
+      }
+      .cell--header {
+        background-color: var(--cell-bg-color);
+        line-height: 2rem;
+      }
+      .cell--item {
+        height: 12vh;
+        min-height: 100px;
+        background-color: $theme-desktop-color;
+        font-family: FontAwesome;
+      }
+      .cell--item--fixed {
+        background-color: var(--cell-bg-color);
       }
     }
   }
 }
+
 app-requirements,
 app-set-proposal {
-  box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
+  @include atDesktop {
+    box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
+    margin-left: 2vw;
+  }
 }

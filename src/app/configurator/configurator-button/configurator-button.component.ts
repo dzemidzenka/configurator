@@ -1,52 +1,29 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { DataService } from '../../services/data.service';
-import { RequirementsModel } from '../../models/models';
+import { IRequirementsModel } from '../../models/models';
 
 
 @Component({
   selector: 'app-configurator-button',
   templateUrl: './configurator-button.component.html',
   styleUrls: ['./configurator-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfiguratorButtonComponent implements OnInit {
+export class ConfiguratorButtonComponent {
 
-  @Input() qtyAvail: number = 0;
-  @Input() L: number = 0;
-  @Input() lordosis: number = 0;
-
-  // @Output() qtyChanged = new EventEmitter<RequirementsModel>();
-
-
-
-  qty$ = this.dataService.state$
-    .map(state => state.requirements)
-    // .startWith([{ L: this.L, lordosis: this.lordosis, qty: 0, qtyAvail: this.qtyAvail }])
-    .scan((qty: number, requirements: Array<RequirementsModel>) => {
-        return requirements
-          .filter(requirement => requirement.L === this.L && requirement.lordosis === this.lordosis)
-          .reduce((qty: number, requirement: RequirementsModel) => requirement.qty, 0);
-    }, 0);
+  @Input() context: IRequirementsModel;
 
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit() { }
-
 
   up() {
-    this.dataService.updateRequirements({ L: this.L, lordosis: this.lordosis, qty: 1, qtyAvail: this.qtyAvail });
-    // this.qtyChanged.emit({ L: this.L, lordosis: this.lordosis, qty: 1, qtyAvail: this.qtyAvail });
+    this.dataService.updateRequirements({ L: this.context.L, lordosis: this.context.lordosis, qty: 1 });
   }
 
 
   down() {
-    this.dataService.updateRequirements({ L: this.L, lordosis: this.lordosis, qty: -1, qtyAvail: this.qtyAvail });
-    // this.qtyChanged.emit({ L: this.L, lordosis: this.lordosis, qty: -1, qtyAvail: this.qtyAvail });
+    this.dataService.updateRequirements({ L: this.context.L, lordosis: this.context.lordosis, qty: -1 });
   }
-
-  // max(qty: number) {
-  //   this.dataService.updateRequirements({ L: this.L, lordosis: this.lordosis, qty: qty });
-  // }
 }
