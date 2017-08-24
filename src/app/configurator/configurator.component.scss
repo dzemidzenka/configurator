@@ -17,10 +17,13 @@
     z-index: 1;
   }
   section {
-    display: flex;
-    justify-content: space-around;
+    // display: flex;
+    // justify-content: space-around;
     align-items: center;
-    // margin-bottom: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    margin-left: 50px;
+    margin-right: 50px;    
     .grid-cell {
       color: black;
       font-size: 150%;

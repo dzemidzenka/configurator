@@ -1,7 +1,8 @@
-  <ng-container *ngFor="let material of materials$ | async">
-     <a [routerLink]="['/configurator', material]" routerLinkActive="routeActive" (click)="onSelect(material)">{{material}}</a>   
-  </ng-container>
+<ng-container *ngFor="let material of materials$ | async">
+  <a [routerLink]="['/configurator', material]" routerLinkActive="routeActive" (click)="onSelect(material)">{{material}}</a>
+</ng-container>
 
-
-
-
+<label for="consignedPresent">
+  <input type="checkbox" id="consignedPresent" (click)="onClick()">
+  Consigned Present
+</label>

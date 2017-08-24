@@ -32,8 +32,7 @@
                     <div class="line">
                         <div class="cell cell--item cell--item--fixed">{{L}}mm</div>
                         <ng-container *ngFor="let lordosis of Lordosis$ | async">
-                            <app-configurator-button class="cell cell--item" [context]="getContext(L, lordosis) | async">
-                            </app-configurator-button>
+                            <app-configurator-button class="cell cell--item" [context]="getContext(L, lordosis) | async"></app-configurator-button>
                         </ng-container>
                     </div>
                 </section>
@@ -42,13 +41,13 @@
     </div>
 
     <app-requirements></app-requirements>
-    <app-set-proposal></app-set-proposal>
+    <!-- <app-set-proposal></app-set-proposal> -->
 </div>
 
 
 
 
-<div class="wrapper-mobile">
+<!-- <div class="wrapper-mobile">
     <header>
         <span>&nbsp;Implant&nbsp;&nbsp;Selection&nbsp;</span>
         <span *ngIf="requirementsChosen$ | async; let requirementsChosen">
@@ -60,8 +59,6 @@
         <ng-container *ngFor="let lordosis of Lordosis$ | async">
             <section>
                 <p class="grid-cell">{{L}}mm</p>
-                <!-- <p class="grid-cell">{{lordosis}}&#176;</p> -->
-
                 <ng-container *ngIf="lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
                 <ng-template #moverTemplate>
                     <div class="grid-cell">{{lordosis}}&#176; Movers</div>
@@ -78,4 +75,30 @@
 
     <app-requirements></app-requirements>
     <app-set-proposal></app-set-proposal>
+</div> -->
+
+
+<div class="wrapper-mobile">
+    <header>
+        <span>&nbsp;Implant&nbsp;&nbsp;Selection&nbsp;</span>
+        <span *ngIf="requirementsChosen$ | async; let requirementsChosen">
+      <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
+    </span>
+    </header>
+
+    <section *ngFor="let r of requirements$ | async">
+        <p class="grid-cell">{{r.L}}mm</p>
+        <ng-container *ngIf="r.lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
+        <ng-template #moverTemplate>
+            <div class="grid-cell">{{r.lordosis}}&#176; Movers</div>
+        </ng-template>
+        <ng-template #outlierTemplate>
+            <div class="grid-cell">Outliers</div>
+        </ng-template>
+
+        <app-configurator-button [context]="r"></app-configurator-button>
+    </section>
+
+    <app-requirements></app-requirements>
+    <!-- <app-set-proposal></app-set-proposal> -->
 </div>

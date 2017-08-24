@@ -1,4 +1,11 @@
-export enum ACTION { RAW = 'RAW', RESET = 'RESET', REQUIREMENT = 'REQUIREMENT', MATERIAL = 'MATERIAL' };
+export enum ACTION {
+    RAW = 'RAW',
+    RESET = 'RESET',
+    REQUIREMENT = 'REQUIREMENT',
+    MATERIAL = 'MATERIAL',
+    CONSIGNED = 'CONSIGNED'
+};
+
 
 export interface IActionModel {
     op: ACTION;
@@ -7,12 +14,13 @@ export interface IActionModel {
     requirement?: IRequirementsModel;
 }
 
-export interface IAvailModel{
+
+export interface IAvailModel {
     material: string;
-    L: number; 
+    L: number;
     lordosis: number;
     partNumber: string;
-    description: string;      
+    description: string;
 }
 
 
@@ -23,9 +31,10 @@ export interface IStateModel {
     L: Array<Number>;
     lordosis: Array<Number>;
     currentMaterial: string;
+    consignedPresent: boolean;
     avail: Array<IAvailModel>;
     requirements: Array<IRequirementsModel>;
-    setProposal: Array<ISetProposalModel>;    
+    setProposal: Array<ISetProposalModel>;
 }
 
 export interface IConfiguratorDataModel {
@@ -38,7 +47,7 @@ export interface IConfiguratorDataModel {
     L: number;
     W: number;
     lordosis: number;
-    lordosisOrig?: number;    
+    lordosisOrig?: number;
     qtyInSet: number;
 }
 
@@ -49,18 +58,22 @@ export interface IRequirementMessageModel {
 }
 
 export interface IRequirementsModel extends IRequirementMessageModel {
-    material: string;  
+    material: string;
     partNumber: string;
-    description: string;  
+    description: string;
     avail: boolean;
-    availMaterials: Array<string>;    
+    availMaterials: Array<string>;
     animationActive: boolean;
     excluded: boolean;
+    setType: string;
+    setTypeAdd: string;    
+    qtyInSet: number;
+    numberOfSets: number;
 }
 
 export interface ISetProposalModel {
     setType: string;
     qty: number;
     qtyInSet: number;
-    animationActive: boolean;    
+    animationActive: boolean;
 } 

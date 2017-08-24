@@ -18,7 +18,9 @@ export class ConfiguratorComponent implements OnInit, OnDestroy {
   Lordosis$ = this._dataService.state$.map(state => state.lordosis);
   L$ = this._dataService.state$.map(state => state.L);
   currentMaterial$ = this._dataService.state$.map(state => state.currentMaterial);
-  requirementsChosen$ = this._dataService.state$.map(state => state.requirements.filter(o => o.qty > 0).length > 0 ? true : false);
+  requirements$ = this._dataService.state$.map(state => state.requirements.filter(r => r.excluded === false));  
+  requirementsChosen$ = this.requirements$.map(requirements => requirements.filter(o => o.qty > 0).length > 0 ? true : false);
+  // requirementsChosen$ = this._dataService.state$.map(state => state.requirements.filter(o => o.qty > 0).length > 0 ? true : false);
   private _params$Subscription: Subscription;
 
   constructor(

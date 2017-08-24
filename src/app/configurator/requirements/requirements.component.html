@@ -24,6 +24,11 @@
             <div>Description: {{requirement.description}}</div> -->
             <div>Qty: {{requirement.qty}}</div>
             <div *ngIf="!requirement.avail" [ngClass]="{'availNo': !requirement.avail}">Material: {{requirement.material}}</div>
+
+            <div>QtyInSet: {{requirement.qtyInSet}}</div>
+            <div>SetType: {{requirement.setType}}</div>
+            <div *ngIf="requirement.setTypeAdd">SetTypeAdditional: {{requirement.setTypeAdd}}</div>                            
+            <div>NumberOfSets: {{requirement.numberOfSets}}</div>                     
         </article>
     </li>
 </ol>

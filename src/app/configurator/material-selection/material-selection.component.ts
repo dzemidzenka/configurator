@@ -21,4 +21,8 @@ export class MaterialSelectionComponent {
   onSelect(material: string) {
     this.dataService.setCurrentMaterial(material);
   }
+
+  onClick(){
+    this.dataService.updateConsignedSetPresent();    
+  }
 }
