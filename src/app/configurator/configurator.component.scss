@@ -22,8 +22,8 @@
     align-items: center;
     display: grid;
     grid-template-columns: 1fr 1fr auto;
-    margin-left: 50px;
-    margin-right: 50px;    
+    margin-left: 25px;
+    margin-right: 25px;    
     .grid-cell {
       color: black;
       font-size: 150%;
@@ -36,13 +36,17 @@
   display: none;
   @include atDesktop {
     display: flex;
+    flex-wrap: wrap;  
     justify-content: center;
     height: 90%;
   }
   .wrapper--configurator {
     --cell-bg-color: $theme-desktop-subheader-color;
-    box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
     height: fit-content; // overflow: auto;
+    margin-left: 1vw;
+    margin-right: 1vw;  
+    margin-bottom: 2vh; 
   }
   .configurator {
     display: flex;
@@ -104,7 +108,8 @@
 app-requirements,
 app-set-proposal {
   @include atDesktop {
-    box-shadow: 5px 5px 20px 0px rgba(50, 50, 50, 0.75);
-    margin-left: 2vw;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+    margin-left: 1vw;
+    margin-right: 1vw;  
   }
 }

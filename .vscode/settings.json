@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/*spec.json": true,
+        "e2e": true
+      }
+}

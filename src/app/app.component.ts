@@ -11,12 +11,12 @@ export class AppComponent implements OnInit {
   readonly title: string = 'Implant Configurator';
 
   constructor(
-    private titleService: Title,
+    private _titleService: Title,
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle(this.title);
-  }  
+    this._titleService.setTitle(this.title);
+  }
 }
 
 

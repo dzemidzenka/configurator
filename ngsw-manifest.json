@@ -1,0 +1,15 @@
+{
+    "external": {
+      "urls": [
+        {"url": "https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"},
+        {"url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"}
+      ]
+    },
+    "static.ignore": [
+      ".png",
+      ".gif",
+      "roboto",
+      "manifest.json",
+      "sw-register"
+    ]
+}

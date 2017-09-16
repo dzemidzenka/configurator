@@ -12,6 +12,7 @@ import { DataService } from '../../services/data.service';
 export class MaterialSelectionComponent {
 
   materials$ = this.dataService.state$.map(state => state.materials);
+  consigned$ = this.dataService.state$.map(state => state.consignedPresent);
 
   constructor(
     private dataService: DataService,
@@ -19,10 +20,10 @@ export class MaterialSelectionComponent {
 
 
   onSelect(material: string) {
-    this.dataService.setCurrentMaterial(material);
+    this.dataService.updateCurrentMaterial(material);
   }
 
-  onClick(){
-    this.dataService.updateConsignedSetPresent();    
+  onClick() {
+    this.dataService.updateConsignedPresent();
   }
 }

@@ -18,7 +18,7 @@ export class ConfiguratorComponent implements OnInit, OnDestroy {
   Lordosis$ = this._dataService.state$.map(state => state.lordosis);
   L$ = this._dataService.state$.map(state => state.L);
   currentMaterial$ = this._dataService.state$.map(state => state.currentMaterial);
-  requirements$ = this._dataService.state$.map(state => state.requirements.filter(r => r.excluded === false));  
+  requirements$ = this._dataService.state$.map(state => state.requirements.filter(r => r.excluded === false));
   requirementsChosen$ = this.requirements$.map(requirements => requirements.filter(o => o.qty > 0).length > 0 ? true : false);
   // requirementsChosen$ = this._dataService.state$.map(state => state.requirements.filter(o => o.qty > 0).length > 0 ? true : false);
   private _params$Subscription: Subscription;
@@ -34,7 +34,7 @@ export class ConfiguratorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._params$Subscription = this._route.params.subscribe(param => {
       if (param.material) {
-        this._dataService.setCurrentMaterial(param.material);
+        this._dataService.updateCurrentMaterial(param.material);
       } else {
         this._router.navigate(['/configurator', this._defaultMaterial]);
       }

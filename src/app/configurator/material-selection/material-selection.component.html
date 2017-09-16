@@ -3,6 +3,6 @@
 </ng-container>
 
 <label for="consignedPresent">
-  <input type="checkbox" id="consignedPresent" (click)="onClick()">
+  <input type="checkbox" id="consignedPresent" [checked]="consigned$ | async" (click)="onClick()">
   Consigned Present
 </label>

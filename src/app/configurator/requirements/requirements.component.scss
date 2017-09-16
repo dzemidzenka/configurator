@@ -2,7 +2,7 @@
 :host() {
     width: 100%;
     @include atDesktop {
-        width: 400px;
+        width: 550px;
         min-width: 400px;        
         height: 100%;
         overflow-y: auto;
@@ -59,7 +59,7 @@ article {
     margin-bottom: 1rem;
     @include atDesktop {
         &:hover {
-            border-left: 5px solid red;
+            border-color: red;
         }
     }
 }

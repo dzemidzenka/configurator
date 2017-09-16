@@ -10,12 +10,12 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./requirements.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
   // animations: [
-  //   trigger('signal', [   
+  //   trigger('signal', [
   //     state('void', style({
-  //       'color': 'red', 
+  //       'color': 'red',
   //       'opacity': '0',
-  //     })),      
-  //     transition('* => active', animate('500ms')),      
+  //     })),
+  //     transition('* => active', animate('500ms')),
   //   ])
   // ],
 })
@@ -24,5 +24,4 @@ export class RequirementsComponent {
   requirements$ = this.dataService.state$.map(state => state.requirements.filter(requirement => requirement.qty > 0));
 
   constructor(public dataService: DataService) { }
-  
 }

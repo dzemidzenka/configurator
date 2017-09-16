@@ -23,6 +23,6 @@ const ROUTES: Routes = [
   ],
   declarations: [
     TableComponent
-  ] 
+  ]
 })
 export class TableModule { }

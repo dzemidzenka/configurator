@@ -1,31 +1,31 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { MenuItem } from 'primeng/primeng';
+// import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+// import { MenuItem } from 'primeng/primeng';
 
-@Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class MenuComponent implements OnInit {
+// @Component({
+//   selector: 'app-menu',
+//   templateUrl: './menu.component.html',
+//   styleUrls: ['./menu.component.scss'],
+//   changeDetection: ChangeDetectionStrategy.OnPush
+// })
+// export class MenuComponent implements OnInit {
 
-  menuItems: MenuItem[];
+//   menuItems: MenuItem[];
 
-  constructor() { }
+//   constructor() { }
 
-  ngOnInit() {
-    this.menuInit();
-  }
+//   ngOnInit() {
+//     this.menuInit();
+//   }
 
 
-  menuInit() {
-    this.menuItems = [
-      {
-        label: 'Configurator', icon: 'fa-database', routerLink: '/'
-      },
-      {
-        label: 'Data', icon: 'fa-table', routerLink: 'data'
-      }
-    ];
-  }
-}
+//   menuInit() {
+//     this.menuItems = [
+//       {
+//         label: 'Configurator', icon: 'fa-database', routerLink: '/'
+//       },
+//       {
+//         label: 'Data', icon: 'fa-table', routerLink: 'data'
+//       }
+//     ];
+//   }
+// }

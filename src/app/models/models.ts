@@ -4,7 +4,7 @@ export enum ACTION {
     REQUIREMENT = 'REQUIREMENT',
     MATERIAL = 'MATERIAL',
     CONSIGNED = 'CONSIGNED'
-};
+}
 
 
 export interface IActionModel {
@@ -66,7 +66,7 @@ export interface IRequirementsModel extends IRequirementMessageModel {
     animationActive: boolean;
     excluded: boolean;
     setType: string;
-    setTypeAdd: string;    
+    setTypeAdd: string;
     qtyInSet: number;
     numberOfSets: number;
 }
@@ -76,4 +76,4 @@ export interface ISetProposalModel {
     qty: number;
     qtyInSet: number;
     animationActive: boolean;
-} 
+}

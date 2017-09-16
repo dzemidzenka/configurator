@@ -27,7 +27,7 @@ export class SetProposalComponent {
   //   range.selectNode(setsToCopy);
   //   window.getSelection().addRange(range);
   //   document.execCommand('copy');
-  //   document.execCommand('copy');    
+  //   document.execCommand('copy');
   //   window.getSelection().removeAllRanges();
   // }
 }

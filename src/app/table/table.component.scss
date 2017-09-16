@@ -1,3 +1,7 @@
+@import "~primeng/resources/themes/omega/theme.css";
+@import "~primeng/resources/primeng.min.css";
+
+
 p-dataTable {
   p-header {
     display: flex;
@@ -5,3 +9,48 @@ p-dataTable {
 }
 
 
+.ui-state-active{
+  background-color: lightgrey!important;
+  color: black!important;
+} 
+
+
+@media ( max-width: 1000px ) {
+  .ui-datatable-reflow thead th,
+  .ui-datatable-reflow tfoot td {
+      display: none !important;
+  }
+
+  .ui-datatable-reflow .ui-datatable-data > tr > td {
+      text-align: left;
+      display: block;
+      border: 0 none;
+      width: 100% !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  clear: left;
+  }
+
+  .ui-datatable-reflow .ui-datatable-data.ui-widget-content {
+      border: 0 none;
+  }
+
+  .ui-datatable-reflow .ui-datatable-data tr.ui-widget-content {
+      border-left: 0 none;
+      border-right: 0 none;
+  }
+
+  .ui-datatable-reflow .ui-datatable-data td .ui-column-title {
+      padding: .4em;
+      min-width: 30%;
+      display: inline-block;
+      margin: -.4em 1em -.4em -.4em;
+      font-weight: bold;
+  }
+  
+  .ui-datatable-reflow.ui-datatable-scrollable .ui-datatable-scrollable-body colgroup {
+      display: block;
+  }
+}
