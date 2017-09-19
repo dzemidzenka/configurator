@@ -6,14 +6,12 @@
     "ng": "./node_modules/.bin/ng",
     "prestart": "npm run security-check",
     "start": "ng serve --open",
-    "build": "ng build --aot --prod",
+    "build": "ng build --aot --prod && npm run deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "./node_modules/.bin/firebase deploy",
-    "security-check": "./node_modules/.bin/nsp check",
-    "sw-gen": "workbox generate:sw",
-    "sw": "workbox inject:manifest"
+    "security-check": "./node_modules/.bin/nsp check"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +30,7 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
+    "ngx-clipboard": "^8.0.4",
     "normalize.scss": "^0.1.0",
     "primeng": "^4.1.2",
     "rxjs": "^5.4.1",

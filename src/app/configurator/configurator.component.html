@@ -41,41 +41,8 @@
     </div>
 
     <app-requirements></app-requirements>
-    <!-- <app-set-proposal></app-set-proposal> -->
 </div>
 
-
-
-
-<!-- <div class="wrapper-mobile">
-    <header>
-        <span>&nbsp;Implant&nbsp;&nbsp;Selection&nbsp;</span>
-        <span *ngIf="requirementsChosen$ | async; let requirementsChosen">
-      <i class="fa fa-refresh fa-1x" aria-hidden="true" (click)="doReset()"></i>
-    </span>
-    </header>
-
-    <ng-container *ngFor="let L of L$ | async">
-        <ng-container *ngFor="let lordosis of Lordosis$ | async">
-            <section>
-                <p class="grid-cell">{{L}}mm</p>
-                <ng-container *ngIf="lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
-                <ng-template #moverTemplate>
-                    <div class="grid-cell">{{lordosis}}&#176; Movers</div>
-                </ng-template>
-                <ng-template #outlierTemplate>
-                    <div class="grid-cell">Outliers</div>
-                </ng-template>   
-
-                <app-configurator-button [context]="getContext(L, lordosis) | async">
-                </app-configurator-button>
-            </section>
-        </ng-container>
-    </ng-container>
-
-    <app-requirements></app-requirements>
-    <app-set-proposal></app-set-proposal>
-</div> -->
 
 
 <div class="wrapper-mobile">
@@ -100,5 +67,5 @@
     </section>
 
     <app-requirements></app-requirements>
-    <!-- <app-set-proposal></app-set-proposal> -->
 </div>
+

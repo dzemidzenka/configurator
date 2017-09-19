@@ -1,0 +1,32 @@
+<div class="mobile">
+    <header>
+        Settings
+    </header>
+
+    <!-- <section>
+    <input type="checkbox" name="LOL" id="rememberInput" [checked]="rememberSelections$ | async" (click)="onClick()">
+    <label for="rememberInput">Remember Selections</label>
+</section> -->
+
+    <div class="settings">
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" [checked]="rememberSelections$ | async"
+                (click)="onClick()">
+            <label class="onoffswitch-label" for="myonoffswitch"></label>
+        </div>
+        <span>&nbsp;Remember Selections</span>
+    </div>
+</div>
+
+
+<div class="desktop">
+    <div class="settings">
+        <span>Remember Selections&nbsp;</span>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" [checked]="rememberSelections$ | async"
+                (click)="onClick()">
+            <label class="onoffswitch-label" for="myonoffswitch"></label>
+        </div>
+    </div>
+
+</div>

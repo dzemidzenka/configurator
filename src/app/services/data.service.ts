@@ -6,8 +6,9 @@ import { sortBy } from 'lodash';
 import cloneDeep from 'lodash/fp/cloneDeep';
 import sortedUniq from 'lodash/fp/sortedUniq';
 import pick from 'lodash/fp/pick';
+import isEmpty from 'lodash/fp/isEmpty';
 
-import { ACTION, IStateModel, IActionModel, IRequirementMessageModel, IAvailModel, ISetProposalModel } from '../models/models';
+import { ACTION, IStateModel, IActionModel, IRequirementMessageModel, IAvailModel } from '../models/models';
 
 
 @Injectable()
@@ -15,66 +16,64 @@ export class DataService {
 
   constructor(
     @Inject('data') private _data,
-    @Inject('defaultMaterial') private _defaultMaterial
+    @Inject('defaultMaterial') private _defaultMaterial,
+    // @Inject('localState') private _localState,
+    @Inject('localStorageName') private _localStorageName
   ) {
     this._initReducers();
-    this._state$Subscription = this.state$.subscribe(state => console.log('Redux state %o', state));
+    this._state$Subscription = this.state$.subscribe(state => {
+      const _state = cloneDeep(state);
+      if (!isEmpty(_state.raw)) {
+        console.log('Redux state', _state);
+      }
+      _state.actions = [];
+      if (this._localStorageName) {
+        _state.raw = [];
+        _state.avail = [];
+        _state.materials = [];
+        _state.L = [];
+        _state.lordosis = [];
+        localStorage.setItem(this._localStorageName, JSON.stringify(_state));
+      }
+    });
   }
-
 
   private _reducers: Array<Function> = [];
   private _actionSubject$ = new Subject<IActionModel>();
   private _state$Subscription: Subscription;
 
-  private _initialState: IStateModel = {
-    actions: [
-      // {
-      //   op: ACTION.REQUIREMENT,
-      //   requirement: {
-      //     L: 22,
-      //     lordosis: 10,
-      //     qty: 5,
-      //     material: '',
-      //     partNumber: '',
-      //     description: '',
-      //     avail: true,
-      //     availMaterials: [],
-      //     animationActive: false,
-      //     excluded: false,
-      //     setType: '',
-      //     setTypeAdd: '',
-      //     qtyInSet: 0,
-      //     numberOfSets: 0
-      //   }
-      // }
-    ],
-    raw: [],
-    materials: [],
-    L: [],
-    lordosis: [],
-    currentMaterial: '',
-    consignedPresent: false,
-    avail: [],
-    requirements: [
-      {
-        L: 22,
-        lordosis: 10,
-        qty: 5,
-        material: '',
-        partNumber: '',
-        description: '',
-        avail: true,
-        availMaterials: [],
-        animationActive: false,
-        excluded: false,
-        setType: '',
-        setTypeAdd: '',
-        qtyInSet: 0,
-        numberOfSets: 0
+  private _initialState: IStateModel = (function () {
+    let state: IStateModel;
+    let rememberSelections = true;
+
+    if (this._localStorageName) {
+      state = JSON.parse(localStorage.getItem(this._localStorageName));
+      if (!isEmpty(state)) {
+        rememberSelections = state.rememberSelections;
+        if (rememberSelections === false) {
+          state = null;
+        }
       }
-    ],
-    setProposal: [],
-  };
+    }
+    if (isEmpty(state)) {
+      state = {
+        actions: [],
+        raw: [],
+        materials: [],
+        L: [],
+        lordosis: [],
+        currentMaterial: this._defaultMaterial,
+        consignedPresent: false,
+        avail: [],
+        requirements: [],
+        rememberSelections: rememberSelections,
+        compress: false
+      };
+    } else {
+      state.raw = this._data;
+    }
+    return state;
+  }).bind(this)();
 
   state$: Observable<IStateModel> = this._actionSubject$
     .startWith(Object.assign({ op: ACTION.RAW, raw: this._data }))
@@ -96,6 +95,7 @@ export class DataService {
   private _reducer(state: IStateModel, action: IActionModel) {
     const _state = cloneDeep(state);
     if (action.op in ACTION) {
+      _state.requirements.map(o => o.animationActive = false);
       this._reducers[action.op].call(this, _state, action);
       _state.actions.unshift(action);
     }
@@ -106,9 +106,15 @@ export class DataService {
   private _initReducers() {
     this._reducers[ACTION.RESET] = (state: IStateModel, action: IActionModel) => {
       state.requirements.map(o => o.qty = 0);
-      state.setProposal = [];
     };
 
+    this._reducers[ACTION.REMEMBER] = (state: IStateModel, action: IActionModel) => {
+      state.rememberSelections = !state.rememberSelections;
+    };
+
+    this._reducers[ACTION.COMPRESS] = (state: IStateModel, action: IActionModel) => {
+      state.compress = !state.compress;
+    };
 
     this._reducers[ACTION.MATERIAL] = (state: IStateModel, action: IActionModel) => {
       state.currentMaterial = action.currentMaterial;
@@ -125,7 +131,7 @@ export class DataService {
 
 
     this._reducers[ACTION.REQUIREMENT] = (state: IStateModel, action: IActionModel) => {
-      state.requirements.map(o => o.animationActive = false);
+      // state.requirements.map(o => o.animationActive = false);
 
       state.requirements
         .filter(o => o.L === action.requirement.L && o.lordosis === action.requirement.lordosis)
@@ -152,7 +158,7 @@ export class DataService {
     this._reducers[ACTION.RAW] = (state: IStateModel, action: IActionModel) => {
       state.raw = action.raw;
       state.materials = sortedUniq(sortBy(action.raw.map(o => o.material)));
-      state.currentMaterial = this._defaultMaterial;
+      // state.currentMaterial = this._defaultMaterial;
       state.L = sortedUniq(sortBy(state.raw.map(o => o.L)));
       state.lordosis = sortedUniq(sortBy(state.raw.map(o => o.lordosis)));
 
@@ -160,6 +166,7 @@ export class DataService {
       state.avail = sortedUniq(sortBy(_avail, ['material', 'L', 'lordosis', 'partNumber', 'description']));
 
       this._initRequirements(state);
+      this._initSetProposal(state);
     };
   }
 
@@ -208,7 +215,7 @@ export class DataService {
     state.requirements
       .filter(r => r.qty > 0)
       .map(r => {
-        const raw = state.raw.find(raw => r.L === raw.L && r.lordosis === raw.lordosis && r.material === raw.material);
+        const raw = state.raw.find(rawData => r.L === rawData.L && r.lordosis === rawData.lordosis && r.material === rawData.material);
         r.setType = raw.setType;
         r.qtyInSet = raw.qtyInSet;
         r.numberOfSets = Math.ceil(r.qty / r.qtyInSet);
@@ -245,5 +252,13 @@ export class DataService {
 
   updateConsignedPresent() {
     this._actionSubject$.next(Object.assign({ op: ACTION.CONSIGNED }));
+  }
+
+  updateRememberSelections() {
+    this._actionSubject$.next(Object.assign({ op: ACTION.REMEMBER }));
+  }
+
+  updateCompress() {
+    this._actionSubject$.next(Object.assign({ op: ACTION.COMPRESS }));
   }
 }

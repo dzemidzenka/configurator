@@ -52,18 +52,9 @@
     }
   }
 
-  label {
-    background-color: $theme-mobile-button-color;
-    color: $theme-mobile-button-font-color;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    box-sizing: border-box;
-    font-size: 150%;
+  .consigned {
+    margin-left: 2em;    
     @include atDesktop {
-      background-color: #622567;
-      margin-left: 50px;
-    }
+      margin-left: 1.5vw;    
+    }      
   }

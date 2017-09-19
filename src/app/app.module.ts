@@ -4,13 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { MenubarModule } from 'primeng/primeng';
+import { TooltipModule } from 'primeng/primeng';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 import { ConfiguratorComponent } from './configurator/configurator.component';
 import { ConfiguratorButtonComponent } from './configurator/configurator-button/configurator-button.component';
 // import { MenuComponent } from './menu/menu.component';
 import { MaterialSelectionComponent } from './configurator/material-selection/material-selection.component';
-import { SetProposalComponent } from './configurator/set-proposal/set-proposal.component';
+import { SettingsComponent } from './configurator/settings/settings.component';
 import { RequirementsComponent } from './configurator/requirements/requirements.component';
 import { data, defaultMaterial } from './app.data';
 
@@ -18,8 +20,6 @@ import { data, defaultMaterial } from './app.data';
 import { DataService } from './services/data.service';
 // import { RouteResolverService } from './services/route-resolver.service';
 
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publishBehavior';
 import 'rxjs/add/operator/scan';
@@ -39,13 +39,24 @@ import 'rxjs/add/operator/startWith';
   });
 })();
 
+// const ROUTES: Routes = [
+//   { path: '', redirectTo: '/configurator/' + defaultMaterial, pathMatch: 'full' },
+//   { path: 'configurator/:material', component: ConfiguratorComponent },
+//     // data: { defaultMaterial: '' }   resolve: {data: RouteResolverService}
+//   { path: 'data', loadChildren: './table/table.module#TableModule' },
+//   { path: '**', redirectTo: '/configurator/' + defaultMaterial }
+// ];
+
+const _LOCAL_STORAGE_NAME = 'configurator_state';
+// const _localState = JSON.parse(localStorage.getItem(_LOCAL_STORAGE_NAME));
+
 
 
 const ROUTES: Routes = [
-  { path: '', redirectTo: '/configurator/' + defaultMaterial, pathMatch: 'full' },
-  { path: 'configurator/:material', component: ConfiguratorComponent },    // data: { defaultMaterial: '' }
+  { path: '', redirectTo: '/configurator', pathMatch: 'full' },
+  { path: 'configurator', component: ConfiguratorComponent },
   { path: 'data', loadChildren: './table/table.module#TableModule' },
-  { path: '**', redirectTo: '/configurator/' + defaultMaterial }
+  { path: '**', redirectTo: '/configurator' }
 ];
 
 
@@ -53,6 +64,8 @@ const ROUTES: Routes = [
   imports: [
     RouterModule.forRoot(ROUTES),
     BrowserModule,
+    ClipboardModule,
+    TooltipModule
     // MenubarModule
   ],
   declarations: [
@@ -60,7 +73,7 @@ const ROUTES: Routes = [
     ConfiguratorComponent,
     // MenuComponent,
     MaterialSelectionComponent,
-    SetProposalComponent,
+    SettingsComponent,
     ConfiguratorButtonComponent,
     RequirementsComponent,
   ],
@@ -76,6 +89,14 @@ const ROUTES: Routes = [
     {
       provide: 'data',
       useValue: data
+    },
+    // {
+    //   provide: 'localState',
+    //   useValue: _localState
+    // },
+    {
+      provide: 'localStorageName',
+      useValue: _LOCAL_STORAGE_NAME
     }
     // RouteResolverService
   ],

@@ -3,7 +3,7 @@
     width: 100%;
     @include atDesktop {
         width: 550px;
-        min-width: 400px;        
+        min-width: 400px;
         height: 100%;
         overflow-y: auto;
         overflow-y: overlay; //Chrome only
@@ -30,19 +30,33 @@ header {
         padding-right: 1vw;
         top: 0;
         background-color: $theme-desktop-header-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    i {
+        margin-left: 2em;
+        @include atDesktop {
+            font-size: 1.5rem;
+        }
     }
 }
 
 ol {
     column-count: 2;
-    column-gap: 3.5em;
+    column-gap: 3.5em;    
+    @include atTablet {
+        column-count: 3;
+    }        
+    margin-right: 2em;
     @include atDesktop {
-        column-count: initial;
-        column-gap: initial;
-        display: grid;
-        // grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+        column-count: 2;
+        
+        // column-count: initial;
+        // column-gap: initial;
+        // display: grid;
+        margin-right: 0; // grid-template-columns: repeat(auto-fill, minmax(200px, auto));
         // grid-auto-rows: minmax(100px, auto);
-
         // grid-template-columns: repeat(3, 200px);
         // grid-template-rows: repeat(4, 200px);
         // grid-auto-flow: column;
@@ -62,6 +76,11 @@ article {
             border-color: red;
         }
     }
+}
+
+
+.fa-clipboard:active {
+    color: red;
 }
 
 .availNo {

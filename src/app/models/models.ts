@@ -3,7 +3,9 @@ export enum ACTION {
     RESET = 'RESET',
     REQUIREMENT = 'REQUIREMENT',
     MATERIAL = 'MATERIAL',
-    CONSIGNED = 'CONSIGNED'
+    CONSIGNED = 'CONSIGNED',
+    REMEMBER = 'REMEMBER',
+    COMPRESS = 'COMPRESS'
 }
 
 
@@ -26,15 +28,16 @@ export interface IAvailModel {
 
 export interface IStateModel {
     actions: Array<IActionModel>;
+    currentMaterial: string;
     raw: Array<IConfiguratorDataModel>;
     materials: Array<string>;
     L: Array<Number>;
     lordosis: Array<Number>;
-    currentMaterial: string;
     consignedPresent: boolean;
     avail: Array<IAvailModel>;
     requirements: Array<IRequirementsModel>;
-    setProposal: Array<ISetProposalModel>;
+    rememberSelections: boolean;
+    compress: boolean;
 }
 
 export interface IConfiguratorDataModel {
@@ -71,9 +74,3 @@ export interface IRequirementsModel extends IRequirementMessageModel {
     numberOfSets: number;
 }
 
-export interface ISetProposalModel {
-    setType: string;
-    qty: number;
-    qtyInSet: number;
-    animationActive: boolean;
-}

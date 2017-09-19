@@ -1,9 +1,19 @@
-@mixin atDesktop {
-  @media only screen and (min-height: 1025px) and (orientation: portrait), only screen and (min-width: 1025px) and (orientation: landscape) {
+// @mixin atDesktop {
+//   @media only screen and (min-height: 1025px) and (orientation: portrait), only screen and (min-width: 1025px) and (orientation: landscape) {
+//     @content;
+//   }
+// }
+@mixin atTablet {
+  @media only screen and (min-width: 750px) {
     @content;
   }
 }
 
+@mixin atDesktop {
+  @media only screen and (min-width: 1050px) {
+    @content;
+  }
+}
 
 $theme-app-background-color: #E0E1DD;
 $theme-desktop-color: lightyellow;

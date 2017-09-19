@@ -12,6 +12,7 @@ import { DataService } from '../../services/data.service';
 export class MaterialSelectionComponent {
 
   materials$ = this.dataService.state$.map(state => state.materials);
+  currentMaterial$ = this.dataService.state$.map(state => state.currentMaterial);
   consigned$ = this.dataService.state$.map(state => state.consignedPresent);
 
   constructor(
