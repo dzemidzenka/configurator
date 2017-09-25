@@ -1,60 +1,63 @@
   @import "../../../styles.shared.scss";
    :host {
-    position: fixed;
-    height: 50px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: $theme-mobile-header-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    @include atDesktop {
-      position: initial;
-      background-color: initial;
-      height: 60px;
-    }
+      position: fixed;
+      height: 50px;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: $theme-mobile-header-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      @include atDesktop {
+          position: initial;
+          background-color: initial;
+          height: 60px;
+      }
   }
 
   a {
-    background-color: $theme-mobile-button-color;
-    color: $theme-mobile-button-font-color;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    box-sizing: border-box;
-    font-size: 150%;
-    margin-left: 2px;
-    margin-right: 2px;
-    text-decoration: none;
-    &.routeActive {
-      color: $theme-mobile-button-active-font-color;
-      text-decoration: overline;
-      text-decoration-color: $theme-mobile-button-active-font-color;
-    }
-    @include atDesktop {
+      background-color: $theme-mobile-button-color;
+      color: $theme-mobile-button-font-color;
       border-radius: 5px;
-      background-color: #622567;
-      color: white;
-      box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.5);
-      &:hover {
-        color: red;
-        border-color: red;
-        box-shadow: 0px 0px 20px 0px red;
-      }
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      box-sizing: border-box;
+      font-size: 75%;
+      margin-left: 2px;
+      margin-right: 2px;
+      text-decoration: none;
       &.routeActive {
-        color: red;
-        border: 1px solid red;
-        box-shadow: 0px 0px 20px 0px red;
+          color: $theme-mobile-button-active-font-color;
+          text-decoration: overline;
+          text-decoration-color: $theme-mobile-button-active-font-color;
       }
-    }
+      @include atPhone {
+          font-size: 130%;
+      }
+      @include atDesktop {
+          border-radius: 5px;
+          background-color: $theme-desktop-button-color;
+          color: white; // box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.5);
+          &:hover {
+              color: red;
+              border-color: red; // box-shadow: 0px 0px 20px 0px red;
+          }
+          &.routeActive {
+              color: red;
+              border: 1px solid red; // box-shadow: 0px 0px 20px 0px red;
+          }
+      }
   }
 
   .consigned {
-    margin-left: 2em;    
-    @include atDesktop {
-      margin-left: 1.5vw;    
-    }      
+      margin-left: 2em;
+      &:after {
+          content: 'Consigned';
+          @include atPhone {
+              content: 'Consigned Present';
+          }
+      }
   }

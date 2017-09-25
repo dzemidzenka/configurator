@@ -1,9 +1,10 @@
 <header>
-    Requirements
-    <i *ngIf="(clipboardContent$ | async) as clipboardContent" class="fa fa-clipboard" aria-hidden="true" ngxClipboard [cbContent]="clipboardContent">
-    </i>
-    <i *ngIf="clipboardContent$ | async" (click)="onCompressExpand()" aria-hidden="true" class="fa" [ngClass]="{'fa-expand': (compress$ | async), 'fa-compress': !(compress$ | async) }">
-    </i>
+    <ng-container *ngIf="(clipboardContent$ | async) as clipboardContent"> 
+        Requirements
+        <i class="fa fa-clipboard" aria-hidden="true" ngxClipboard [cbContent]="clipboardContent"></i>
+        <a href="mailto:" aria-hidden="true" class="fa fa-envelope"></a>
+        <i (click)="onCompressExpand()" aria-hidden="true" class="fa" [ngClass]="{'fa-expand': (compress$ | async), 'fa-compress': !(compress$ | async) }"></i>
+    </ng-container>
 </header>
 
 <ol>
@@ -28,9 +29,8 @@
                 <div>QtyInSet: {{requirement.qtyInSet}}</div>
             </ng-container>
 
-            <div>SetType: {{requirement.setType}}</div>
-            <div *ngIf="requirement.setTypeAdd">SetTypeAdditional: {{requirement.setTypeAdd}}</div>
-            <div>NumberOfSets: {{requirement.numberOfSets}}</div>
+            <div>{{requirement.numberOfSets}}x{{requirement.setType}}</div>
+            <div *ngIf="requirement.setTypeAdd">1x{{requirement.setTypeAdd}}</div>
             <i class="fa fa-trash" (click)="onDelete(requirement)"></i>
         </article>
     </li>

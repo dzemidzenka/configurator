@@ -13,7 +13,9 @@ export class SettingsComponent {
 
   rememberSelections$ = this.dataService.state$.map(state => state.rememberSelections);
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService,
+  ) { }
 
   onClick() {
     this.dataService.updateRememberSelections();

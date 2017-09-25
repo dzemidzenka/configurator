@@ -39,8 +39,6 @@
             </main>
         </div>
     </div>
-
-    <app-requirements></app-requirements>
 </div>
 
 
@@ -53,7 +51,7 @@
     </span>
     </header>
 
-    <section *ngFor="let r of requirements$ | async">
+    <section *ngFor="let r of requirements$ | async; odd as isOdd; trackBy: trackByFn" [class.odd]="isOdd">
         <p class="grid-cell">{{r.L}}mm</p>
         <ng-container *ngIf="r.lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
         <ng-template #moverTemplate>
@@ -65,7 +63,6 @@
 
         <app-configurator-button [context]="r"></app-configurator-button>
     </section>
-
-    <app-requirements></app-requirements>
 </div>
 
+<app-requirements></app-requirements>

@@ -3,6 +3,12 @@
 //     @content;
 //   }
 // }
+@mixin atPhone {
+  @media only screen and (min-width: 500px) {
+    @content;
+  }
+}
+
 @mixin atTablet {
   @media only screen and (min-width: 750px) {
     @content;
@@ -15,12 +21,15 @@
   }
 }
 
-$theme-app-background-color: #E0E1DD;
+$theme-app-background-color: #EFEFF1;
+
 $theme-desktop-color: lightyellow;
 $theme-desktop-header-color: #B6E5FB;
 // $theme-desktop-header-color: white;
 
 $theme-desktop-subheader-color: #DCFEFC;
+$theme-desktop-button-color: #444;
+
 $theme-mobile-header-color: darkgrey;
 $theme-mobile-subheader-color: lightgrey;
 $theme-mobile-button-color: #444;

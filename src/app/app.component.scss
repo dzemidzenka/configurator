@@ -1,22 +1,33 @@
 @import "../styles.shared.scss";
 .app {
     width: 100vw;
+    background-color: $theme-app-background-color;
     @include atDesktop {
         height: 100vh;
-        background-color: $theme-app-background-color;        
     }
 }
 
 header {
     display: none;
     @include atDesktop {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: flex; // justify-content: center;
+        // align-items: center;
         height: 100px;
-        min-height: 100px;
-        background: radial-gradient(circle at center, #b1e1ff 0%, #66a0fc 100%);
-        font-size: 3.5rem;
+        min-height: 100px; // background: radial-gradient(circle at center, #b1e1ff 0%, #66a0fc 100%);
+        background-color: #333;
+        position: relative;
+    }
+    img {
+        position: absolute;
+        left: 20px;
+        top: 10px;
+    }
+    .title {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        color: #A05AA8;
+        font-size: 1.5rem;
         font-weight: bold;
         text-transform: uppercase;
     }
@@ -32,9 +43,8 @@ nav {
 main {
     @include atDesktop {
         overflow-y: auto;
+        overflow-y: overlay; //Chrome only
         overflow-x: hidden;
-        height: calc(100% - 145px);
+        height: calc(100vh - 100px);
     }
 }
-
-

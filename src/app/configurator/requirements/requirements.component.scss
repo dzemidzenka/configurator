@@ -2,9 +2,6 @@
 :host() {
     width: 100%;
     @include atDesktop {
-        width: 550px;
-        min-width: 400px;
-        height: 100%;
         overflow-y: auto;
         overflow-y: overlay; //Chrome only
         overflow-x: hidden;
@@ -19,23 +16,24 @@ header {
     position: sticky;
     top: 50px;
     text-align: center;
+    margin-top: 1em;    
     padding-top: 5px;
     padding-bottom: 5px;
     z-index: 1;
     @include atDesktop {
         font-size: 2rem;
-        padding-top: 0;
-        padding-bottom: 0;
-        padding-left: 1vw;
-        padding-right: 1vw;
+        margin: 0;            
+        padding: 0;
         top: 0;
         background-color: $theme-desktop-header-color;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    i {
+    .fa {
         margin-left: 2em;
+        color: initial;
+        text-decoration: none;
         @include atDesktop {
             font-size: 1.5rem;
         }
@@ -44,18 +42,19 @@ header {
 
 ol {
     column-count: 2;
-    column-gap: 3.5em;    
+    column-gap: 3.5em;
+    margin-right: 2em;
     @include atTablet {
         column-count: 3;
-    }        
-    margin-right: 2em;
+    }
     @include atDesktop {
-        column-count: 2;
-        
-        // column-count: initial;
+        column-count: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; // column-count: initial;
         // column-gap: initial;
         // display: grid;
-        margin-right: 0; // grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+        // grid-template-columns: repeat(auto-fill, minmax(200px, auto));
         // grid-auto-rows: minmax(100px, auto);
         // grid-template-columns: repeat(3, 200px);
         // grid-template-rows: repeat(4, 200px);
@@ -67,20 +66,24 @@ article {
     break-inside: avoid-column;
     width: fit-content;
     padding-left: 8px;
-    font-style: normal; // font-size: 0.8rem;
+    font-style: normal; 
+    font-size: 0.9em;
     color: black;
     border-left: 2px solid black;
     margin-bottom: 1rem;
     @include atDesktop {
+        margin-right: 3em;
         &:hover {
             border-color: red;
+            > .fa{
+                color: red;
+            }
         }
     }
 }
 
-
 .fa-clipboard:active {
-    color: red;
+    animation: 1s showup;
 }
 
 .availNo {
@@ -88,8 +91,8 @@ article {
 }
 
 .animation {
-    animation-duration: 1s;
-    animation-name: showup;
+    animation: 1s showup;
+    -webkit-animation: 1s showup;
 }
 
 @keyframes showup {

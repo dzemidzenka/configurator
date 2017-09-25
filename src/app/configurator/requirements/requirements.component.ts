@@ -28,14 +28,13 @@ export class RequirementsComponent {
   clipboardContent$ = this.requirements$.map(reqs => {
     let cb = '';
     for (const req of reqs) {
-      cb += `${req.setType} \t ${req.qty} \r\n`;
+      cb += `${req.setType} \t ${req.numberOfSets} \r\n`;
       if (req.setTypeAdd) {
         cb += `${req.setTypeAdd} \t 1 \r\n`;
       }
     }
     return cb;
   });
-
 
 
   onCompressExpand() {
@@ -46,5 +45,7 @@ export class RequirementsComponent {
     this.dataService.updateRequirements({ L: requirement.L, lordosis: requirement.lordosis, qty: -requirement.qty });
   }
 
-  constructor(public dataService: DataService) { }
+  constructor(
+    public dataService: DataService,
+  ) { }
 }

@@ -14,7 +14,6 @@
     font-weight: bold;
     background-color: $theme-mobile-subheader-color;
     margin-bottom: 3rem;
-    z-index: 1;
     i {
       margin-left: 2em;
     }
@@ -23,12 +22,15 @@
     align-items: center;
     display: grid;
     grid-template-columns: 1fr 1fr auto;
-    margin-left: 25px;
-    margin-right: 25px;   
+    padding-left: 25px;
+    padding-right: 25px;
     .grid-cell {
       color: black;
       font-size: 150%;
     }
+  }
+  .odd{
+    background-color: #D8D2D2;
   }
 }
 
@@ -39,7 +41,6 @@
     display: flex;
     flex-wrap: wrap;  
     justify-content: center;
-    height: 90%;
   }
   .wrapper--configurator {
     --cell-bg-color: $theme-desktop-subheader-color;
@@ -47,7 +48,6 @@
     height: fit-content; // overflow: auto;
     margin-left: 1vw;
     margin-right: 1vw;  
-    margin-bottom: 2vh; 
   }
   .configurator {
     display: flex;

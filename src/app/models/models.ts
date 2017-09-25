@@ -42,7 +42,6 @@ export interface IStateModel {
 
 export interface IConfiguratorDataModel {
     setType: string;
-    type: string;
     partNumber: string;
     description: string;
     material: string;
@@ -61,6 +60,7 @@ export interface IRequirementMessageModel {
 }
 
 export interface IRequirementsModel extends IRequirementMessageModel {
+    id: number;
     material: string;
     partNumber: string;
     description: string;

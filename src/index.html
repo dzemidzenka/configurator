@@ -4,24 +4,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta name="theme-color" content="#622567">
-  <title>Configurator</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Implants</title>
   <base href="/">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-  <link rel="manifest" href="/manifest.json">  
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"> -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Implants">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-57x57.png" sizes="57x57">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-60x60.png" sizes="60x60">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-72x72.png" sizes="72x72">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-76x76.png" sizes="76x76">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-114x114.png" sizes="114x114">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-120x120.png" sizes="120x120">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-144x144.png" sizes="144x144">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-152x152.png" sizes="152x152">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-icon-180x180.png" sizes="180x180">
+  <meta name="msapplication-TileImage" content="/src/images/icons/app-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#fff">
+  <meta name="theme-color" content="#622567">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+  </style>
 </head>
 
 <body>
   <app-root>
     <style>
-      body {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
       app-root {
         display: flex;
         justify-content: center;
@@ -30,7 +45,6 @@
         width: 100vw;
         color: red;
         font-size: 4rem;
-        font-family: sans-serif;
       }
 
       @keyframes dots {
@@ -46,20 +60,22 @@
         animation: dots 1.0s ease-out infinite;
       }
 
-      .d-2 {
+      .d2 {
         animation-delay: .5s;
       }
 
-      .d-3 {
+      .d3 {
         animation-delay: 1s;
       }
     </style>
-
     Loading
     <span class="d">.</span>
-    <span class="d d-2">.</span>
-    <span class="d d-3">.</span>
+    <span class="d d2">.</span>
+    <span class="d d3">.</span>
   </app-root>
+  <!-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" as="style"
+    crossorigin> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </body>
-
 </html>

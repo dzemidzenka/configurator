@@ -159,6 +159,7 @@ export class DataService {
     this._reducers[ACTION.RAW] = (state: IStateModel, action: IActionModel) => {
       state.raw = action.raw;
       state.materials = sortedUniq(sortBy(action.raw.map(o => o.material)));
+      // state.currentMaterial = this._defaultMaterial;
       state.L = sortedUniq(sortBy(action.raw.map(o => o.L)));
       state.lordosis = sortedUniq(sortBy(action.raw.map(o => o.lordosis)));
 
