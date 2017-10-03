@@ -14,7 +14,7 @@ import { IRequirementsModel } from '../models/models';
 export class ConfiguratorComponent {
 
   Lordosis$ = this._dataService.state$.map(state => state.lordosis);
-  L$ = this._dataService.state$.map(state => state.L);
+  W$ = this._dataService.state$.map(state => state.W);
   currentMaterial$ = this._dataService.state$.map(state => state.currentMaterial);
   requirements$ = this._dataService.state$.map(state => state.requirements.filter(r => r.excluded === false));
   requirementsChosen$ = this.requirements$.map(requirements => requirements.filter(o => o.qty > 0).length > 0 ? true : false);
@@ -32,7 +32,7 @@ export class ConfiguratorComponent {
     return item.id;
   }
 
-  getContext(L, lordosis): Observable<IRequirementsModel> {
-    return this._dataService.state$.map(state => state.requirements.filter(o => o.L === L && o.lordosis === lordosis)[0]);
+  getContext(W, lordosis): Observable<IRequirementsModel> {
+    return this._dataService.state$.map(state => state.requirements.filter(o => o.W === W && o.lordosis === lordosis)[0]);
   }
 }

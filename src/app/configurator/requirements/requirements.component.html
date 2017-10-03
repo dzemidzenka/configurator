@@ -14,7 +14,7 @@
 
         <article [ngClass]="{'animation': requirement.animationActive}">
             <ng-container *ngIf="!(compress$ | async)">
-                <div><strong>Footprint: {{requirement.L}}mm</strong></div>
+                <div><strong>Footprint: {{requirement.W}}mm</strong></div>
 
                 <ng-container *ngIf="requirement.lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
                 <ng-template #moverTemplate>

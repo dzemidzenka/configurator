@@ -28,11 +28,11 @@
                     </div>
                 </header>
 
-                <section *ngFor="let L of L$ | async">
+                <section *ngFor="let W of W$ | async">
                     <div class="line">
-                        <div class="cell cell--item cell--item--fixed">{{L}}mm</div>
+                        <div class="cell cell--item cell--item--fixed">{{W}}mm</div>
                         <ng-container *ngFor="let lordosis of Lordosis$ | async">
-                            <app-configurator-button class="cell cell--item" [context]="getContext(L, lordosis) | async"></app-configurator-button>
+                            <app-configurator-button class="cell cell--item" [context]="getContext(W, lordosis) | async"></app-configurator-button>
                         </ng-container>
                     </div>
                 </section>
@@ -52,7 +52,7 @@
     </header>
 
     <section *ngFor="let r of requirements$ | async; odd as isOdd; trackBy: trackByFn" [class.odd]="isOdd">
-        <p class="grid-cell">{{r.L}}mm</p>
+        <p class="grid-cell">{{r.W}}mm</p>
         <ng-container *ngIf="r.lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
         <ng-template #moverTemplate>
             <div class="grid-cell">{{r.lordosis}}&#176; Movers</div>

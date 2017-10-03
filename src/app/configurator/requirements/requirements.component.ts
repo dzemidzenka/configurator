@@ -42,7 +42,7 @@ export class RequirementsComponent {
   }
 
   onDelete(requirement: IRequirementsModel) {
-    this.dataService.updateRequirements({ L: requirement.L, lordosis: requirement.lordosis, qty: -requirement.qty });
+    this.dataService.updateRequirements({ W: requirement.W, lordosis: requirement.lordosis, qty: -requirement.qty });
   }
 
   constructor(

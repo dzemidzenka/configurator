@@ -17,24 +17,14 @@ export interface IActionModel {
 }
 
 
-export interface IAvailModel {
-    material: string;
-    L: number;
-    lordosis: number;
-    partNumber: string;
-    description: string;
-}
-
-
 export interface IStateModel {
     actions: Array<IActionModel>;
     currentMaterial: string;
     raw: Array<IConfiguratorDataModel>;
     materials: Array<string>;
-    L: Array<Number>;
+    W: Array<Number>;
     lordosis: Array<Number>;
     consignedPresent: boolean;
-    avail: Array<IAvailModel>;
     requirements: Array<IRequirementsModel>;
     rememberSelections: boolean;
     compress: boolean;
@@ -54,7 +44,7 @@ export interface IConfiguratorDataModel {
 }
 
 export interface IRequirementMessageModel {
-    L: number;
+    W: number;
     lordosis: number;
     qty: number;
 }

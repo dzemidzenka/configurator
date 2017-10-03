@@ -19,11 +19,11 @@ export class ConfiguratorButtonComponent {
 
 
   up() {
-    this.dataService.updateRequirements({ L: this.context.L, lordosis: this.context.lordosis, qty: 1 });
+    this.dataService.updateRequirements({ W: this.context.W, lordosis: this.context.lordosis, qty: 1 });
   }
 
 
   down() {
-    this.dataService.updateRequirements({ L: this.context.L, lordosis: this.context.lordosis, qty: -1 });
+    this.dataService.updateRequirements({ W: this.context.W, lordosis: this.context.lordosis, qty: -1 });
   }
 }

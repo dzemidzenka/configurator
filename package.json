@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
-    "raw": "tsc ./src/RawData/server.ts",
+    "data": "node ./src/data/server.js",
     "prestart": "npm run security-check",
     "start": "ng serve --open",
     "build": "ng build --aot --prod --stats-json --build-optimizer --vendor-chunk",
@@ -31,10 +31,8 @@
     "@angular/service-worker": "^1.0.0-beta.16",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17.4",
     "lodash-es": "^4.17.4",
     "ngx-clipboard": "^8.0.4",
-    "normalize.scss": "^0.1.0",
     "primeng": "^4.1.2",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
