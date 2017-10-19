@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
-import { DataService } from '../../services/data.service';
+import { ReduxService } from '../../services/redux.service';
 import { IRequirementsModel } from '../../models/models';
 
 
@@ -15,7 +15,7 @@ export class ConfiguratorButtonComponent {
   @Input() context: IRequirementsModel;
 
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: ReduxService) { }
 
 
   up() {

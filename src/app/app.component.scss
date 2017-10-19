@@ -14,13 +14,15 @@ header {
         // align-items: center;
         height: 100px;
         min-height: 100px; // background: radial-gradient(circle at center, #b1e1ff 0%, #66a0fc 100%);
+        max-height: 100px; // background: radial-gradient(circle at center, #b1e1ff 0%, #66a0fc 100%);
         background-color: #333;
         position: relative;
     }
     img {
         position: absolute;
         left: 20px;
-        top: 10px;
+        top: 15px;
+        height: 70%;
     }
     .title {
         position: absolute;

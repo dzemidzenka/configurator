@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-// import { trigger, state, style, transition, animate } from "@angular/animations";
-
-import { DataService } from '../../services/data.service';
+import { ReduxService } from '../../services/redux.service';
 import { IRequirementsModel } from '../../models/models';
 
 
@@ -10,19 +8,13 @@ import { IRequirementsModel } from '../../models/models';
   templateUrl: './requirements.component.html',
   styleUrls: ['./requirements.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
-  // animations: [
-  //   trigger('signal', [
-  //     state('void', style({
-  //       'color': 'red',
-  //       'opacity': '0',
-  //     })),
-  //     transition('* => active', animate('500ms')),
-  //   ])
-  // ],
 })
 export class RequirementsComponent {
 
-  requirements$ = this.dataService.state$.map(state => state.requirements.filter(requirement => requirement.qty > 0));
+  requirements$ = this.dataService.state$.map(state => state.requirements
+    .filter(req => req.qty > 0)
+    .filter(req => (req.W === 26 && state.currentMaterial !== 'Ti-C') ? false : true)
+  );
   compress$ = this.dataService.state$.map(state => state.compress);
 
   clipboardContent$ = this.requirements$.map(reqs => {
@@ -46,6 +38,6 @@ export class RequirementsComponent {
   }
 
   constructor(
-    public dataService: DataService,
+    public dataService: ReduxService,
   ) { }
 }

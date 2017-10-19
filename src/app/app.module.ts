@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -12,9 +11,8 @@ import { MaterialSelectionComponent } from './configurator/material-selection/ma
 import { SettingsComponent } from './configurator/settings/settings.component';
 import { RequirementsComponent } from './configurator/requirements/requirements.component';
 
-import { DataService } from './services/data.service';
+import { ReduxService } from './services/redux.service';
 import { PROVIDERS } from './services/providers';
-// import { RouteResolverService } from './services/route-resolver.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publishBehavior';
@@ -49,9 +47,8 @@ const ROUTES: Routes = [
     CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
-    DataService,
+    ReduxService,
     ...PROVIDERS
-    // RouteResolverService
   ],
   bootstrap: [
     AppComponent

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-import { DataService } from '../../services/data.service';
+import { ReduxService } from '../../services/redux.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class SettingsComponent {
   rememberSelections$ = this.dataService.state$.map(state => state.rememberSelections);
 
   constructor(
-    private dataService: DataService,
+    private dataService: ReduxService,
   ) { }
 
   onClick() {

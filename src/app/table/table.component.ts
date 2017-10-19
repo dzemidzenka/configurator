@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { ReduxService } from '../services/redux.service';
 
 @Component({
   selector: 'app-table',
@@ -7,11 +7,8 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./table.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
+  constructor(private dataService: ReduxService) {}
 
   data$ = this.dataService.state$.map(state => state.raw);
-
-  constructor(private dataService: DataService) { }
-
-  ngOnInit() { }
 }

@@ -8,19 +8,19 @@ export enum ACTION {
     COMPRESS = 'COMPRESS'
 }
 
-
 export interface IActionModel {
     op: ACTION;
     raw?: Array<IConfiguratorDataModel>;
+    setContent?: Array<ISetContentModel>;
     currentMaterial?: string;
     requirement?: IRequirementsModel;
 }
-
 
 export interface IStateModel {
     actions: Array<IActionModel>;
     currentMaterial: string;
     raw: Array<IConfiguratorDataModel>;
+    setContent: Array<ISetContentModel>;
     materials: Array<string>;
     W: Array<Number>;
     lordosis: Array<Number>;
@@ -60,7 +60,13 @@ export interface IRequirementsModel extends IRequirementMessageModel {
     excluded: boolean;
     setType: string;
     setTypeAdd: string;
+    setContent: Array<ISetContentModel>;
+    setContentAdd: Array<ISetContentModel>;
     qtyInSet: number;
     numberOfSets: number;
 }
 
+export interface ISetContentModel {
+    setType: string;
+    content: string;
+}

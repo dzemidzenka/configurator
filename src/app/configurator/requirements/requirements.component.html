@@ -1,27 +1,28 @@
-<header>
-    <ng-container *ngIf="(clipboardContent$ | async) as clipboardContent"> 
-        Requirements
-        <i class="fa fa-clipboard" aria-hidden="true" ngxClipboard [cbContent]="clipboardContent"></i>
-        <a href="mailto:" aria-hidden="true" class="fa fa-envelope"></a>
-        <i (click)="onCompressExpand()" aria-hidden="true" class="fa" [ngClass]="{'fa-expand': (compress$ | async), 'fa-compress': !(compress$ | async) }"></i>
-    </ng-container>
+<header *ngIf="(clipboardContent$ | async) as clipboardContent">
+    <span>Requirements</span>
+    <i class="fa fa-clipboard" aria-hidden="true" ngxClipboard [cbContent]="clipboardContent"></i>
+    <a href="mailto:" aria-hidden="true" class="fa fa-envelope"></a>
+    <i (click)="onCompressExpand()" aria-hidden="true" class="fa" [ngClass]="{'fa-expand': (compress$ | async), 'fa-compress': !(compress$ | async) }"></i>
 </header>
 
 <ol>
     <li *ngFor="let requirement of requirements$ | async">
-        <!-- <p class="animated zoomIn"> -->
-        <!-- <article [@signal]="requirement.animationActive"> -->
-
         <article [ngClass]="{'animation': requirement.animationActive}">
             <ng-container *ngIf="!(compress$ | async)">
-                <div><strong>Footprint: {{requirement.W}}mm</strong></div>
+                <div>
+                    <strong>Footprint: {{requirement.W}}mm</strong>
+                </div>
 
                 <ng-container *ngIf="requirement.lordosis === 99; then outlierTemplate else moverTemplate"></ng-container>
                 <ng-template #moverTemplate>
-                    <div><strong>Lordosis: {{requirement.lordosis}}&#176;</strong></div>
+                    <div>
+                        <strong>Lordosis: {{requirement.lordosis}}&#176;</strong>
+                    </div>
                 </ng-template>
                 <ng-template #outlierTemplate>
-                    <div><strong>Outliers</strong></div>
+                    <div>
+                        <strong>Outliers</strong>
+                    </div>
                 </ng-template>
 
                 <div>Qty: {{requirement.qty}}</div>
@@ -30,7 +31,9 @@
             </ng-container>
 
             <div>{{requirement.numberOfSets}}x{{requirement.setType}}</div>
+            <div *ngFor="let content of requirement.setContent" class="setContent">{{content.content}}</div>
             <div *ngIf="requirement.setTypeAdd">1x{{requirement.setTypeAdd}}</div>
+            <div *ngFor="let content of requirement.setContentAdd" class="setContent">{{content.content}}</div>
             <i class="fa fa-trash" (click)="onDelete(requirement)"></i>
         </article>
     </li>

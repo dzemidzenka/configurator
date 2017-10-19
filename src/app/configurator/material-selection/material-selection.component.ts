@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-import { DataService } from '../../services/data.service';
+import { ReduxService } from '../../services/redux.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class MaterialSelectionComponent {
   consigned$ = this.dataService.state$.map(state => state.consignedPresent);
 
   constructor(
-    private dataService: DataService,
+    private dataService: ReduxService,
   ) { }
 
 
